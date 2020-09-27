@@ -1,8 +1,25 @@
 <p>Run me in the browser from your server to try</p>
 <form method="POST">
-  <label>Type Something</label>
+  <label for="myInput">Type Something</label>
   <!-- we need the name attribute so our data gets submitted correctly-->
-  <input name="text" />
+  <input id="myInput" name="text" />
+  <label for="radio1">Yes</label>
+  
+  <p>Are these concepts easy?</p>
+  <input id="radio1" name="easy" type="radio" value="Y"/>
+  <label for="radio2">No</label>
+  <input id="radio2" name="easy" type="radio" value="N"/>
+  
+  <p>What languages are you learning?</p>
+  <label for="lang1">PHP</label>
+  <input id="lang1" name="lang[]" type="checkbox" value="PHP"/>
+  <label for="lang2">HTML</label>
+  <input id="lang2" name="lang[]" type="checkbox" value="HTML"/>
+  <label for="lang3">CSS</label>
+  <input id="lang3" name="lang[]" type="checkbox" value="CSS"/>
+  <label for="lang4">JS</label>
+  <input id="lang4" name="lang[]" type="checkbox" value="JS"/>
+  
   <!-- this is a special type that lets the form submit-->
   <input type="submit"/>
   <!-- this is a special type that clears the form-->
