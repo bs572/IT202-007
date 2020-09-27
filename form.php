@@ -1,5 +1,5 @@
 <p>Run me in the browser from your server to try</p>
-<form>
+<form method="POST">
   <label>Type Something</label>
   <!-- we need the name attribute so our data gets submitted correctly-->
   <input name="text" />
