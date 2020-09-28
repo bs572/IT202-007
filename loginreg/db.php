@@ -7,7 +7,7 @@ function getDB(){
     if(!isset($db)) {
         try{
             /
-            require_once(__DIR__. "../lib/config.php");
+            require_once(__DIR__. "/../lib/config.php");
             
             $connection_string = "mysql:host=$dbhost;dbname=$dbdatabase;charset=utf8mb4";
             //using the PDO connector create a new connect to the DB
