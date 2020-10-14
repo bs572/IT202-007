@@ -24,13 +24,14 @@ ul[class="nav"]{
 }
 
 .nav > li a:hover {
-    background-color: ##58042D;
+    background-color: #58042D;
 }
 
 input, select {
     width: 60%;
     padding: 12px 20px;
     margin: 8px 0;
+    float: left;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
