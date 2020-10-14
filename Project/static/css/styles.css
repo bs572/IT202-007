@@ -24,11 +24,11 @@ ul[class="nav"]{
 }
 
 .nav > li a:hover {
-    background-color: #39ca40;
+    background-color: ##58042D;
 }
 
 input, select {
-    width: 100%;
+    width: 60%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -38,7 +38,7 @@ input, select {
 }
 
 input[type=submit] {
-    width: 100%;
+    width: 60%;
     background-color: #042D58;
     color: white;
     padding: 14px 20px;
