@@ -8,7 +8,7 @@ ul[class="nav"]{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #026e02;
+    background-color: #042D58;
 }
 
 .nav > li {
@@ -39,7 +39,7 @@ input, select {
 
 input[type=submit] {
     width: 100%;
-    background-color: #026e02;
+    background-color: #042D58;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
