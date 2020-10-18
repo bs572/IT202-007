@@ -79,7 +79,7 @@ if (isset($_POST["saved"])) {
         if (!empty($_POST["newPassword"]) && !empty($_POST["confirm"]) && !empty($_POST["password"])) {
             $currentPass = $_POST["password"];
             $stmt = $db->prepare("SELECT password from Users WHERE id = :id");
-            $params = array(":id" => $userID);
+            $params = array(":id" => get_user_id());
             $r = $stmt->execute($params);
            $e = $stmt->errorInfo();
             if ($e[0] != "00000") {
