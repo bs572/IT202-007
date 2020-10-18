@@ -77,7 +77,7 @@ if (isset($_POST["saved"])) {
         //if so, then check if it's a valid reset request
         if (!empty($_POST["password"]) && !empty($_POST["confirm"])) {
             $stmt = $db->prepare("SELECT password from Users WHERE id = :id");
-            $params = array(":password" => $currentPass);
+            $params = array(":userid" => $currentPass);
             $r = $stmt->execute($params);
            $e = $stmt->errorInfo();
             if ($e[0] != "00000") {
@@ -100,7 +100,7 @@ if (isset($_POST["saved"])) {
             }
             }   
         }
-    }
+    } 
 //fetch/select fresh data in case anything changed
         $stmt = $db->prepare("SELECT email, username from Users WHERE id = :id LIMIT 1");
         $stmt->execute([":id" => get_user_id()]);
