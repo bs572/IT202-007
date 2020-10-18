@@ -75,7 +75,7 @@ if (isset($_POST["saved"])) {
         }
         //password is optional, so check if it's even set
         //if so, then check if it's a valid reset request
-        if (!empty($_POST["password"]) && !empty($_POST["confirm"])) {
+        if (!empty($_POST["newPassword"]) && !empty($_POST["confirm"])) {
             $stmt = $db->prepare("SELECT password from Users WHERE id = :id");
             $params = array(":id" => $userID);
             $r = $stmt->execute($params);
