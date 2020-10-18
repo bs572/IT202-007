@@ -84,7 +84,7 @@ if (isset($_POST["saved"])) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result && isset($result["password"])) {
                 $DBPassHash = $result["password"];
-            if (password_verify($password, $password_hash_from_db)) {
+            if (password_verify($currentPass, $DBPassHash)) {
                 if ($_POST["newPassword"] == $_POST["confirm"]) {
                     $newPassword = $_POST["newPassword"];
                     $newPassHash = password_hash($newPassword, PASSWORD_BCRYPT);
