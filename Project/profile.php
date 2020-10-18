@@ -65,6 +65,7 @@ if (isset($_POST["saved"])) {
     }
     if ($isValid) {
         $userID = null;
+        $currentPass = null;
         $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         if ($r) {
@@ -85,6 +86,7 @@ if (isset($_POST["saved"])) {
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result && isset($result["password"])) {
                 $DBPassHash = $result["password"];
+                $currentPass = $_POST["password"];
             if (password_verify($currentPass, $DBPassHash)) {
                 if ($_POST["newPassword"] == $_POST["confirm"]) {
                     $newPassword = $_POST["newPassword"];
