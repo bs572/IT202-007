@@ -64,6 +64,7 @@ if (isset($_POST["saved"])) {
         }
     }
     if ($isValid) {
+        $currentPass = "";
         $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
         $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
         if ($r) {
