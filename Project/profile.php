@@ -77,6 +77,7 @@ if (isset($_POST["saved"])) {
         //password is optional, so check if it's even set
         //if so, then check if it's a valid reset request
         if (!empty($_POST["newPassword"]) && !empty($_POST["confirm"]) && !empty($_POST["password"])) {
+            $currentPass = $_POST["password"];
             $stmt = $db->prepare("SELECT password from Users WHERE id = :id");
             $params = array(":id" => $userID);
             $r = $stmt->execute($params);
@@ -85,7 +86,7 @@ if (isset($_POST["saved"])) {
                 flash("Something went wrong, please try again");  }
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result && isset($result["password"])) {
-                $currentPass = $_POST["password"];
+                
                 $DBPassHash = $result["password"];
             if (password_verify($currentPass, $DBPassHash)) {
                 if ($_POST["newPassword"] == $_POST["confirm"]) {
