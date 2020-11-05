@@ -33,7 +33,7 @@ if(isset($_POST["save"])){
             ":quantity"=>$quantity,
             ":desc"=>$desc,
             //":nst"=>$nst,
-            ":user"=>$user
+            //":user"=>$user
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
