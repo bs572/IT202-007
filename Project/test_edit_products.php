@@ -19,7 +19,7 @@ if(isset($_POST["save"])){
 	$$name = $_POST["name"];
 	// $state = $_POST["state"];
 	$pr = $_POST["price"];
-	$quantitiy = $_POST["quantity"];
+	$quantity = $_POST["quantity"];
 	$desc = $_POST["description"];
 	//$nst = date('Y-m-d H:i:s');//calc
 	$user = get_user_id();

@@ -25,12 +25,12 @@ if(isset($_POST["save"])){
 	$name = $_POST["name"];
 	// $state = $_POST["state"];
 	$pr = $_POST["price"];
-	$quantitiy = $_POST["quantity"];
+	$quantity = $_POST["quantity"];
 	$desc = $_POST["description"];
 	//$nst = date('Y-m-d H:i:s');//calc
 	$user = get_user_id();
 	$db = getDB();
-	$stmt = $db->prepare("INSERT INTO Products (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity,:desc,:user)");
+	$stmt = $db->prepare("INSERT INTO Products (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity, :desc, :user)");
 	$r = $stmt->execute([
 		":name"=>$name,
 		":pr"=>$pr,
