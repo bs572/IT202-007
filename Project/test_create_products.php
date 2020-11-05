@@ -30,7 +30,7 @@ if(isset($_POST["save"])){
 	//$nst = date('Y-m-d H:i:s');//calc
 	$user = get_user_id();
 	$db = getDB();
-	$stmt = $db->prepare("INSERT INTO Products (id, name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity,:desc,:user)");
+	$stmt = $db->prepare("INSERT INTO Products (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity,:desc,:user)");
 	$r = $stmt->execute([
 		":name"=>$name,
 		":pr"=>$pr,
