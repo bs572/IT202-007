@@ -16,7 +16,7 @@ if(isset($_GET["id"])){
 //saving
 if(isset($_POST["save"])){
 	//TODO add proper validation/checks
-	$$name = $_POST["name"];
+	$name = $_POST["name"];
 	// $state = $_POST["state"];
 	$pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
