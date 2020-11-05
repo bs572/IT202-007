@@ -25,7 +25,7 @@ if(isset($_POST["save"])){
 	$user = get_user_id();
 	$db = getDB();
 	if(isset($id)){
-		$stmt = $db->prepare("UPDATE Products set name=:name, price=:pr, quantity=:quantity, desc=:desc where id=:id");
+		$stmt = $db->prepare("UPDATE Products set name=:name, price=:pr, quantity=:quantity, description=:desc where id=:id");
 		//$stmt = $db->prepare("INSERT INTO F20_Eggs (name, state, base_rate, mod_min, mod_max, next_stage_time, user_id) VALUES(:name, :state, :br, :min,:max,:nst,:user)");
 		$r = $stmt->execute([
             ":name"=>$name,
