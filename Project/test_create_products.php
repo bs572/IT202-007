@@ -15,7 +15,7 @@ if (!has_role("Admin")) {
 	<label>Quantity</label>
 	<input type="number" min="0" name="quantity"/>
 	<label>Description</label>
-	<input type="text" name="Description"/>
+	<input type="text" name="description"/>
 	<input type="submit" name="save" value="Create"/>
 </form>
 
