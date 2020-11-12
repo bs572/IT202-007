@@ -18,12 +18,10 @@ if (isset($_POST["save"])) {
     //TODO add proper validation/checks
     $name = $_POST["name"];
     $pid = $_POST["product_id"];
-    if ($pid <= 0) {
-        $pid = null;
+    if ($id <= 0) {
+        $id = null;
     }
-    $pr = $_POST["price"];
     $quantity = $_POST["quantity"];
-    $desc = $_POST["description"];
     $user = get_user_id();
     $db = getDB();
     if (isset($id)) {
