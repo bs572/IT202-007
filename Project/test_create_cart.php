@@ -6,16 +6,25 @@ if (!has_role("Admin")) {
     die(header("Location: login.php"));
 }
 ?>
+<?php
+$db = getDB();
+$stmt = $db->prepare("SELECT id,name from Products LIMIT 10");
+$r = $stmt->execute();
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
     <h3>Create Cart</h3>
     <form method="POST">
-        <label>Name</label>
-        <input name="name" placeholder="Name"/>
+    <select name="product_id" value="<?php echo $result["product_id"];?>" >
+            <option value="-1">None</option>
+            <?php foreach ($products as $product): ?>
+                <option value="<?php safer_echo($product["id"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                ><?php safer_echo($product["name"]); ?></option>
+            <?php endforeach; ?>
+        </select>
         <label>Quantity</label>
         <input type="number" min="1" name="quantity"/>
         <label>Price</label>
         <input type="number" min="1" name="price"/>
-        <label>Description</label>
-        <input type="text" name="description"/>
         <input type="submit" name="save" value="Create"/>
     </form>
 
