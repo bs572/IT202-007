@@ -15,10 +15,10 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT product_id From Cart join Users on Cart.user_id = Products.id where Cart.user_id=:user_id and Products.name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT product_id From Cart join Users on Products.id where Cart.user_id=:user_id and Products.name like :q LIMIT 10");
     $r = $stmt->execute([
         ":q" => "%$query%",
-        ":user_id"=> $id,
+        //":user_id"=> $id,
         ]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
