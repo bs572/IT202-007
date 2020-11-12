@@ -14,7 +14,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("cart.price, product.name, cart.quantity from Cart join product on cart.product_id = product.id where cart.user_id = :id LIMIT 10");
+    $stmt = $db->prepare("Cart.price, Products.name, Cart.quantity from Cart join Products on Cart.product_id = Product.id where Cart.user_id = :id LIMIT 10");
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -24,7 +24,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 }
 ?>
-<h3>List Incubators</h3>
+<h3>List Cart</h3>
 <form method="POST">
     <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
     <input type="submit" value="Search" name="search"/>
