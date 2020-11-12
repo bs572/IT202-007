@@ -25,12 +25,9 @@ if (isset($_POST["save"])) {
     $user = get_user_id();
     $db = getDB();
     if (isset($id)) {
-        $stmt = $db->prepare("UPDATE Cart set name=:name, product_id=:pid, price=:pr, quantity=:quantity, description=:description where id=:id");
+        $stmt = $db->prepare("UPDATE Cart set quantity=:quantity where id=:id");
         $r = $stmt->execute([
-            ":name" => $name,
-            ":pr" => $pr,
             ":quantity"=>$quantity,
-		    ":desc"=>$desc,
             ":id" => $id
         ]);
         if ($r) {
