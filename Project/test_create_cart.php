@@ -31,10 +31,8 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <?php
 if (isset($_POST["save"])) {
     //TODO add proper validation/checks
-    $name = $_POST["name"];
     $pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
-	$desc = $_POST["description"];
     $user = get_user_id();
     $db = getDB();
     $stmt = $db->prepare("INSERT INTO Cart (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity, :desc, :user)");
