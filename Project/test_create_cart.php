@@ -17,7 +17,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
             <?php foreach ($products as $product): ?>
-                <option value="<?php safer_echo($product["id"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                <option value="<?php safer_echo($product["id"]); ?>"
                 ><?php safer_echo($product["id"]); ?></option>
             <?php endforeach; ?>
         </select>
