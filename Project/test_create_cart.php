@@ -41,7 +41,7 @@ if (isset($_POST["save"])) {
         ":id"=>$id,
         ":pr"=>$pr,
 		":quantity"=>$quantity,
-		":user"=>$user
+		//":user"=>$user
     ]);
     if ($r) {
         flash("Created successfully with id: " . $db->lastInsertId());
