@@ -62,7 +62,7 @@ $pids = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h3>Edit Cart</h3>
     <form method="POST">
         <label>Product</label>
-        <select name="id" value="<?php echo $result["pid_id"];?>" >
+        <select name="id" value="<?php echo $result["id"];?>" >
             <option value="-1">None</option>
             <?php foreach ($Products as $Product): ?>
                 <option value="<?php safer_echo($id["id"]); ?>" <?php echo ($result["product_id"] == $id["id"] ? 'selected="selected"' : ''); ?>
