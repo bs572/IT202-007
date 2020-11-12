@@ -14,8 +14,8 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("Cart.price, Products.name, Cart.quantity from Cart join Products on Cart.product_id = Product.id where Cart.user_id = :id LIMIT 10");
-    $r = $stmt->execute([":q" => "%$query%"]);
+    $stmt = $db->prepare("SELECT Cart.price, Products.name, Cart.quantity from Cart join Products on Cart.product_id = Product.id where Cart.user_id = :id LIMIT 10");
+    $r = $stmt->execute([":id" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
