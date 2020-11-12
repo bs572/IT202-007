@@ -17,7 +17,7 @@ if (isset($_GET["id"])) {
 if (isset($_POST["save"])) {
     //TODO add proper validation/checks
     //$name = $_POST["name"];
-    //$productID = $_POST["product_id"];
+    //$products = $_POST["product_id"];
     if ($CartID <= 0) {
         $CartID = null;
     }
@@ -51,13 +51,12 @@ if (isset($CartID)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM Cart where id = :id");
     $r = $stmt->execute([":id" => $CartID]);
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
-//get pids for dropdown
 $db = getDB();
 $stmt = $db->prepare("SELECT id,name from Products LIMIT 10");
 $r = $stmt->execute();
-$productID = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <h3>Edit Cart</h3>
     <form method="POST">
@@ -65,7 +64,7 @@ $productID = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <select name="id" value="<?php echo $result["id"];?>" >
             <option value="-1">None</option>
             <?php foreach ($result as $results): ?>
-                <option value="<?php safer_echo($result["id"]); ?>" <?php echo ($result["id"] == $productID["id"] ? 'selected="selected"' : ''); ?>
+                <option value="<?php safer_echo($result["product_id"]); ?>" <?php echo ($result["product_id"] == $products["id"] ? 'selected="selected"' : ''); ?>
                 ><?php safer_echo($result["name"]); ?></option>
             <?php endforeach; ?>
         </select>
