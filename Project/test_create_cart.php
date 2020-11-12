@@ -33,7 +33,7 @@ if (isset($_POST["save"])) {
     //TODO add proper validation/checks
     $pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
-    $user = get_user_id();
+    $id = get_user_id();
     $db = getDB();
     $stmt = $db->prepare("SELECT FROM Products(price) VALUES(:pr)");
     $stmt = $db->prepare("INSERT INTO Cart (product_id, price, quantity,user_id) VALUES(:id, :pr, :quantity, :user)");
