@@ -35,9 +35,11 @@ if (isset($_POST["save"])) {
 	$quantity = $_POST["quantity"];
     $user = get_user_id();
     $db = getDB();
-    $stmt = $db->prepare("INSERT INTO Cart (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity, :desc, :user)");
+    $stmt = $db->prepare("SELECT FROM Products(price) VALUES(:pr)");
+    $stmt = $db->prepare("INSERT INTO Cart (product_id, price, quantity,user_id) VALUES(:id, :pr, :quantity, :user)");
     $r = $stmt->execute([
-		":pr"=>$pr,
+        ":id"=>$id,
+        ":pr"=>$pr,
 		":quantity"=>$quantity,
 		":user"=>$user
     ]);
