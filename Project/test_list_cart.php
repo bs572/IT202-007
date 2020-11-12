@@ -40,15 +40,15 @@ if (isset($_POST["search"]) && !empty($query)) {
                 <div class="list-group-item">
                     <div>
                         <div>Name:</div>
-                        <div><?php safer_echo($r["name"]); ?></div>
+                        <div><?php safer_echo($r["Products.name"]); ?></div>
                     </div>
                     <div>
                         <div>Product ID:</div>
-                        <div><?php safer_echo($r["product_id"]); ?></div>
+                        <div><?php safer_echo($r["Cart.product_id"]); ?></div>
                     </div>
                     <div>
                         <div>Quantity:</div>
-                        <div><?php safer_echo($r["quantity"]); ?></div>
+                        <div><?php safer_echo($r["Cart.quantity"]); ?></div>
                     </div>
                     <div>
                         <a type="button" href="test_edit_cart.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
