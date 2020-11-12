@@ -9,7 +9,7 @@ if (!has_role("Admin")) {
 <?php
 //we'll put this at the top so both php block have access to it
 if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+    $CartID = $_GET["id"];
 }
 ?>
 <?php
@@ -18,8 +18,8 @@ if (isset($_POST["save"])) {
     //TODO add proper validation/checks
     $name = $_POST["name"];
     $pid = $_POST["product_id"];
-    if ($id <= 0) {
-        $id = null;
+    if ($CartID <= 0) {
+        $CartID = null;
     }
     $quantity = $_POST["quantity"];
     $user = get_user_id();
@@ -28,10 +28,10 @@ if (isset($_POST["save"])) {
         $stmt = $db->prepare("UPDATE Cart set quantity=:quantity where id=:id");
         $r = $stmt->execute([
             ":quantity"=>$quantity,
-            ":id" => $id
+            ":id" => $CartID
         ]);
         if ($r) {
-            flash("Updated successfully with id: " . $id);
+            flash("Updated successfully with id: " . $CartID);
         }
         else {
             $e = $stmt->errorInfo();
@@ -46,18 +46,18 @@ if (isset($_POST["save"])) {
 <?php
 //fetching
 $result = [];
-if (isset($id)) {
-    $id = $_GET["id"];
+if (isset($CartID)) {
+    $CartID = $_GET["id"];
     $db = getDB();
     $stmt = $db->prepare("SELECT * FROM Cart where id = :id");
-    $r = $stmt->execute([":id" => $id]);
+    $r = $stmt->execute([":id" => $CartID]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 //get pids for dropdown
 $db = getDB();
 $stmt = $db->prepare("SELECT id,name from Products LIMIT 10");
 $r = $stmt->execute();
-$pids = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$productID = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <h3>Edit Cart</h3>
     <form method="POST">
