@@ -26,11 +26,11 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label>Price</label>
         <input type="number" min="1" name="price"/>
         <input type="submit" name="save" value="Create"/>
-        <?php$id = $_POST["product_id"];?>
     </form>
 
 <?php
 if (isset($_POST["save"])) {
+    $id = $_POST["product_id"];
     //TODO add proper validation/checks
     $pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
