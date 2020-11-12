@@ -20,13 +20,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <option value="<?php safer_echo($product["id"]); ?>"
                 ><?php safer_echo($product["id"]); ?></option>
             <?php endforeach; ?>
-            $id = $_POST["product_id"];
         </select>
         <label>Quantity</label>
         <input type="number" min="1" name="quantity"/>
         <label>Price</label>
         <input type="number" min="1" name="price"/>
         <input type="submit" name="save" value="Create"/>
+        $id = $_POST["product_id"];
     </form>
 
 <?php
