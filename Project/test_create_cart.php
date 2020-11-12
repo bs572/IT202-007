@@ -37,11 +37,8 @@ if (isset($_POST["save"])) {
     $db = getDB();
     $stmt = $db->prepare("INSERT INTO Cart (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity, :desc, :user)");
     $r = $stmt->execute([
-        ":name"=>$name,
 		":pr"=>$pr,
 		":quantity"=>$quantity,
-		":desc"=>$desc,
-		//":nst"=>$nst,
 		":user"=>$user
     ]);
     if ($r) {
