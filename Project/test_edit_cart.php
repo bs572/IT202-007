@@ -66,9 +66,7 @@ $pids = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <h3>Edit Cart</h3>
     <form method="POST">
-        <label>Name</label>
-        <input name="name" placeholder="Name" value="<?php echo $result["name"]; ?>"/>
-        <label>pid</label>
+        <label>Product</label>
         <select name="pid_id" value="<?php echo $result["pid_id"];?>" >
             <option value="-1">None</option>
             <?php foreach ($Products as $Product): ?>
@@ -76,12 +74,8 @@ $pids = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ><?php safer_echo($pid["name"]); ?></option>
             <?php endforeach; ?>
         </select>
-        <label>Price</label>
-        <input type="number" min="0" name="price" value="<?php echo $result["price"]; ?>"/>
         <label>Quantity</label>
         <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
-        <label>Description</label>
-        <input type="text" name="description" value="<?php echo $result["description"]; ?>"/>
         <input type="submit" name="save" value="Update"/>
     </form>
 
