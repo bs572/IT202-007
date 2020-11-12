@@ -37,7 +37,7 @@ if (isset($id)) {
                 <p>Stats</p>
                 <div>Price <?php safer_echo($result["price"]); ?></div>
                 <div>Quantity <?php safer_echo($result["quantity"]); ?></div>
-                <div>Description <?php safer_echo($result["descrption"]); ?></div>
+                <div>Description <?php safer_echo($result["description"]); ?></div>
             </div>
         </div>
     </div>
