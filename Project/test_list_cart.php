@@ -8,7 +8,7 @@ if (!has_role("Admin")) {
 ?>
 <?php
 $query = "";
-$id=get_user_id();`
+$id=get_user_id();
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
