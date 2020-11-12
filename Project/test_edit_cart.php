@@ -17,7 +17,7 @@ if (isset($_GET["id"])) {
 if (isset($_POST["save"])) {
     //TODO add proper validation/checks
     $name = $_POST["name"];
-    $pid = $_POST["product_id"];
+    $productID = $_POST["product_id"];
     if ($CartID <= 0) {
         $CartID = null;
     }
