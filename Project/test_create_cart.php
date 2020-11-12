@@ -20,6 +20,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <option value="<?php safer_echo($product["id"]); ?>"
                 ><?php safer_echo($product["id"]); ?></option>
             <?php endforeach; ?>
+            $id = $_POST["product_id"];
         </select>
         <label>Quantity</label>
         <input type="number" min="1" name="quantity"/>
@@ -38,7 +39,7 @@ if (isset($_POST["save"])) {
     $stmt = $db->prepare("SELECT FROM Products(price) VALUES(:pr)");
     $stmt = $db->prepare("INSERT INTO Cart (product_id, price, quantity,user_id) VALUES(:id, :pr, :quantity, :user)");
     $r = $stmt->execute([
-        ":id"=>$id,
+        //":id"=>$id,
         ":pr"=>$pr,
 		":quantity"=>$quantity,
 		":user"=>$user
