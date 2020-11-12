@@ -15,7 +15,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT product_id From Cart JOIN Users on Cart.product_id = Products.id where Cart.user_id=:user_id and Products.name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT product_id, name From Cart JOIN Users on Cart.product_id = Products.id where Cart.user_id=:user_id and Products.name like :q LIMIT 10");
     $r = $stmt->execute([
         ":q" => "%$query%",
         ":user_id"=> $id,
