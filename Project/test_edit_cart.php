@@ -24,7 +24,7 @@ if (isset($_POST["save"])) {
     $quantity = $_POST["quantity"];
     $user = get_user_id();
     $db = getDB();
-    if (isset($id)) {
+    if (isset($CartID)) {
         $stmt = $db->prepare("UPDATE Cart set quantity=:quantity where id=:id");
         $r = $stmt->execute([
             ":quantity"=>$quantity,
@@ -64,7 +64,7 @@ $productID = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label>Product</label>
         <select name="id" value="<?php echo $result["id"];?>" >
             <option value="-1">None</option>
-            <?php foreach ($Products as $Product): ?>
+            <?php foreach ($name as $names): ?>
                 <option value="<?php safer_echo($productID["id"]); ?>" <?php echo ($result["product_id"] == $productID["id"] ? 'selected="selected"' : ''); ?>
                 ><?php safer_echo($productID["name"]); ?></option>
             <?php endforeach; ?>
