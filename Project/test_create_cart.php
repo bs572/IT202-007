@@ -26,7 +26,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <label>Price</label>
         <input type="number" min="1" name="price"/>
         <input type="submit" name="save" value="Create"/>
-        $id = $_POST["product_id"];
+        <?php$id = $_POST["product_id"];?>
     </form>
 
 <?php
