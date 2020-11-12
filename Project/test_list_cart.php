@@ -1,6 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
-error_reporting(E_ALL);
 if (!has_role("Admin")) {
     //this will redirect to login and kill the rest of this script (prevent it from executing)
     flash("You don't have permission to access this page");
@@ -9,7 +8,7 @@ if (!has_role("Admin")) {
 ?>
 <?php
 $query = "";
-$id=null;
+$id='';
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
