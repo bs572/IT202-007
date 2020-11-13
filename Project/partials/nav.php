@@ -15,9 +15,9 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li><a href="logout.php">Logout</a></li>
         <?php endif; ?>
         <?php if (has_role("Admin")): ?>
-            <li><a href="test_create_product.php">Create Product</a></li>
+            <li><a href="test_create_products.php">Create Product</a></li>
             <li><a href="test_create_cart.php">Create Cart</a></li>
-            <li><a href="test_list_product.php">List Product</a></li>
+            <li><a href="test_list_products.php">List Product</a></li>
             <li><a href="test_list_cart.php">List Cart</a></li>
         <?php endif; ?>
     </ul>
