@@ -21,10 +21,14 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 ><?php safer_echo($product["name"]); ?></option>
             <?php endforeach; ?>
         </select>
+        <div class="form-group">
         <label>Quantity</label>
         <input type="number" min="1" name="quantity"/>
+        </div>
+        <div class="form-group">
         <label>Price</label>
         <input type="number" min="1" name="price"/>
+            </div>
         <input type="submit" name="save" value="Create"/>
     </form>
 
