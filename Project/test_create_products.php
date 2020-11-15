@@ -7,6 +7,7 @@ if (!has_role("Admin")) {
 }
 ?>
 
+<h3>Create Product</h3>
 <form method="POST">
 	<div class="form-group">	
 		<label>Name</label>
