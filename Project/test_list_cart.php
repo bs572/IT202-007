@@ -53,6 +53,9 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <div><?php safer_echo($r["quantity"]); ?></div>
                     </div>
                     <div>
+                        <button type="button" onclick="test_edit_cart.php?id=<?php safer_echo($r['id']); ?>" class="btn btn-primary btn-lg">Edit
+                            
+                        </button>
                         <a type="button" href="test_edit_cart.php?id=<?php safer_echo($r['id']); ?>">Edit</a>
                         <a type="button" href="test_view_cart.php?id=<?php safer_echo($r['id']); ?>">View</a>
                     </div>
