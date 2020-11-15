@@ -21,7 +21,6 @@ if(isset($_POST["save"])){
 	$pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
 	$desc = $_POST["description"];
-	//$nst = date('Y-m-d H:i:s');//calc
 	$user = get_user_id();
 	$db = getDB();
 	if(isset($id)){
