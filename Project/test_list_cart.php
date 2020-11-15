@@ -30,9 +30,11 @@ if (isset($_POST["search"]) && !empty($query)) {
 ?>
 <h3>List Cart</h3>
 <form method="POST">
-    <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-    <input type="submit" value="Search" name="search"/>
-</form>
+    <div class="form-group">    
+        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
+        <input type="submit" value="Search" name="search"/>
+    </div>
+    </form>
 <div class="results">
     <?php if (count($results) > 0): ?>
         <div class="list-group">
