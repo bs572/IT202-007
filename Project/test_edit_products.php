@@ -61,15 +61,22 @@ if(isset($id)){
 ?>
 
 <form method="POST">
+<div class="form-group">
 	<label>Name</label>
 	<input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
-	
+</div>
+<div class="form-group">	
 	<label>Price</label>
 	<input type="number" min="0" name="price"/>
+</div>
+<div class="form-group">	
 	<label>Quantity</label>
 	<input type="number" min="0" name="quantity"/>
+</div>
+<div class="form-group">	
 	<label>Description</label>
 	<input type="text" name="description"/>
+</div>
 	<input type="submit" name="save" value="Update"/>
 </form>
 
