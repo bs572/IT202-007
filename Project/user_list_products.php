@@ -39,9 +39,10 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <div><?php safer_echo($r["price"]); ?></div>
                     </div>
                     <div>
-                        <?php if ($r["quantity"] <10): endif;?>
+                        <?php if ($r["quantity"] < 10): ?>
                         <div>Quantity:</div>
                         <div><?php safer_echo($r["quantity"]); ?></div>
+                   <?php endif;?>
                     </div>
                     <div>
                         <div>Description:</div>
