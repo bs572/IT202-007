@@ -27,20 +27,7 @@ if (isset($id)) {
     <p class="card-text">Gen2 Precision 7285 class legal turbo for SportFWD, and World Cup Finals Super Street</p>
     <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
-</div>
-    
-        <div class="card-title">
-            <?php safer_echo($result["name"]); ?>
-        </div>
-        <div class="card-body">
-            <div>
-                <p>Stats</p>
-                <div>Price: <?php safer_echo($result["price"]); ?></div>
-                <div>Quantity: <?php safer_echo($result["quantity"]); ?></div>
-                <div>Description <?php safer_echo($result["description"]); ?></div>
-            </div>
-        </div>
-    </div>
+
 <?php else: ?>
     <p>Error looking up id...</p>
 <?php endif; ?>
