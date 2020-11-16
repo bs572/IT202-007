@@ -7,15 +7,24 @@ if (!has_role("Admin")) {
 }
 ?>
 
+<h3>Create Product</h3>
 <form method="POST">
-	<label>Name</label>
-	<input name="name" placeholder="Name"/>
-	<label>Price</label>
-	<input type="number" min="0" name="price"/>
-	<label>Quantity</label>
-	<input type="number" min="0" name="quantity"/>
+	<div class="form-group">	
+		<label>Name</label>
+		<input name="name" placeholder="Name"/>
+	</div>
+	<div class="form-group">
+		<label>Price</label>
+		<input type="number" min="0" name="price"/>
+	</div>
+	<div class="form-group">
+		<label>Quantity</label>
+		<input type="number" min="0" name="quantity"/>
+	</div>
+	<div class="form-group">
 	<label>Description</label>
 	<input type="text" name="description"/>
+	</div>
 	<input type="submit" name="save" value="Create"/>
 </form>
 

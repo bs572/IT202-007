@@ -60,16 +60,20 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
     <h3>Edit Cart</h3>
     <form method="POST">
+    <div class="form-group">    
         <label>Product</label>
-        <select name="id" value="<?php echo $result["id"];?>" >
-            <option value="-1">None</option>
-            <?php foreach ($products as $product): ?>
-                <option value="<?php safer_echo($result["product_id"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
-                ><?php safer_echo($product["name"]); ?></option>
-            <?php endforeach; ?>
-        </select>
+            <select name="id" value="<?php echo $result["id"];?>" >
+                <option value="-1">None</option>
+                <?php foreach ($products as $product): ?>
+                    <option value="<?php safer_echo($result["product_id"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                    ><?php safer_echo($product["name"]); ?></option>
+                <?php endforeach; ?>
+            </select>
+    </div>
+    <div class="form-group">
         <label>Quantity</label>
         <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
+    </div>
         <input type="submit" name="save" value="Update"/>
     </form>
 
