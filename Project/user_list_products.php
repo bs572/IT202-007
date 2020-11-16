@@ -40,8 +40,8 @@ if (isset($_POST["search"]) && !empty($query)) {
                     </div>
                     <div>
                         <?php if ($r["quantity"] < 10): ?>
-                        <div>Quantity:</div>
-                        <div><?php safer_echo($r["quantity"]); ?></div>
+                        
+                        <div><?php safer_echo("Only" $r["quantity"] "left in stock, order soon."); ?></div>
                    <?php endif;?>
                     </div>
                     <div>
