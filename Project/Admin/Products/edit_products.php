@@ -81,4 +81,4 @@ if(isset($id)){
 </form>
 
 
-<?php require(__DIR__ . "/partials/flash.php");
+<?php require(__DIR__ . "/../../partials/flash.php");
