@@ -25,7 +25,7 @@ if (isset($id)) {
   <div class="card-body">
     <h5 class="card-title">Precision 7285</h5>
     <p class="card-text">Gen2 Precision 7285 class legal turbo for SportFWD, and World Cup Finals Super Street</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
+    <a href="#" class="btn btn-primary">Add to Cart</a>
   </div>
 
 <?php else: ?>
