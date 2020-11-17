@@ -31,7 +31,6 @@ if (isset($_POST["search"]) && !empty($query)) {
                <?php if ($r["visibility"] == 1): ?>
                     <div class="list-group-item">
                     <div>
-                        <div>Name:</div>
                         <div><?php safer_echo($r["name"]); ?></div>
                     </div>
                     <div>
@@ -47,6 +46,9 @@ if (isset($_POST["search"]) && !empty($query)) {
                     <div>
                         <div>Description:</div>
                         <div><?php safer_echo($r["description"]); ?></div>
+                    </div>
+                    <div>
+                        <a type="button" href="test_view_products.php?id=<?php safer_echo($r['id']); ?>">View Product</a>
                     </div>
                 </div> 
             <?php endif; ?>
