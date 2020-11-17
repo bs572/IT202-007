@@ -22,10 +22,10 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li><a href="logout.php">Logout</a></li>
         <?php endif; ?>
         <?php if (has_role("Admin")): ?>
-            <li><a href="Admin/Products/create_products.php">Create Product</a></li>
-            <li><a href="Admin/Cart/create_cart.php">Create Cart</a></li>
-            <li><a href="Admin/Products/list_products.php">List Product</a></li>
-            <li><a href="Admin/Cart/list_cart.php">List Cart</a></li>
+            <li><a href="/../Admin/Products/create_products.php">Create Product</a></li>
+            <li><a href="/../Admin/Cart/create_cart.php">Create Cart</a></li>
+            <li><a href="/../Admin/Products/list_products.php">List Product</a></li>
+            <li><a href="/../Admin/Cart/list_cart.php">List Cart</a></li>
         <?php endif; ?>
     </ul>
 </nav>
