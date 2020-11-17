@@ -1,5 +1,6 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
+$itemID = null;
 $query = "";
 $results = [];
 if (isset($_POST["query"])) {
