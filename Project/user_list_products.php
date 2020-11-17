@@ -1,6 +1,5 @@
 <?php require_once(__DIR__ . "/partials/nav.php"); ?>
 <?php
-$itemID = null;
 $query = "";
 $results = [];
 if (isset($_POST["query"])) {
@@ -30,7 +29,6 @@ if (isset($_POST["search"]) && !empty($query)) {
         <div class="list-group">
         <?php foreach ($results as $r): ?>
                <?php if ($r["visibility"] == 1): ?>
-                    <?php $itemID = $r['id']; ?>
                     <div class="list-group-item">
                     <div>
                         <div><?php safer_echo($r["name"]); ?></div>
@@ -50,7 +48,7 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <div><?php safer_echo($r["description"]); ?></div>
                     </div>
                     <div>
-                        <a type="button" href="user_view_products.php?id=<?php $itemID ?>">View Product</a>
+                        <a type="button" href="user_view_products.php?id=<?php safer_echo($r['id']); ?>">View Product</a>
                     </div>
                 </div> 
             <?php endif; ?>
