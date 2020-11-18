@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="<?php echo getURL("static/css/style.");?>">
+<link rel="stylesheet" href="<?php echo getURL("static/css/style.css");?>">
 <?php
 //we'll be including this on most/all pages so it's a good place to include anything else we want on those pages
 require_once(__DIR__ . getURL('lib/helpers.php'));
