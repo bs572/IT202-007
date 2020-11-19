@@ -12,7 +12,7 @@ $stmt = $db->prepare("SELECT id,name from Products LIMIT 10");
 $r = $stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-    <h3>Create Cart</h3>
+     <h3>Create Cart</h3>
     <form method="POST">
     <select name="product_id" value="<?php echo $result["product_id"];?>" >
             <option value="-1">None</option>
