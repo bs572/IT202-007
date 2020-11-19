@@ -17,7 +17,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 }
 ?>
-<h3>List Products</h3>
+<h3>Search</h3>
 <form method="POST">
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
