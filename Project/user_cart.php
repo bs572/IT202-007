@@ -29,7 +29,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 }
 ?>
-<h3>List Cart</h3>
+<h3>Your Cart</h3>
 <form method="POST">
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
@@ -57,7 +57,7 @@ if (isset($_POST["search"]) && !empty($query)) {
             <?php endforeach; ?>
         </div>
     <?php else: ?>
-        <p>No results</p>
+        <p>Your cart is empty, but it doesn't have to be that way.</p>
     <?php endif; ?>
 </div>
 <?php require(__DIR__ . "/partials/flash.php");
