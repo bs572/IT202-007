@@ -18,12 +18,6 @@ if (isset($_POST["search"]) && !empty($query)) {
 }
 ?>
 <h3>Search</h3>
-<form method="POST">
-    <div class="form-group">    
-        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="Search" name="search"/>
-    </div>
-</form>
 <select name="category" value="<?php echo $result["category"];?>" >
             <option value="-1">None</option>
             <?php foreach ($results as $result): ?>
@@ -31,6 +25,14 @@ if (isset($_POST["search"]) && !empty($query)) {
                 ><?php safer_echo($result["category"]); ?></option>
             <?php endforeach; ?>
         </select>
+
+<form method="POST">
+    <div class="form-group">    
+        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
+        <input type="submit" value="Search" name="search"/>
+    </div>
+</form>
+
 <div class="results">
     <?php if (count($results) > 0): ?>
         <div class="list-group">
