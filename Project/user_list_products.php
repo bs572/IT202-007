@@ -26,9 +26,9 @@ if (isset($_POST["search"]) && !empty($query)) {
 </form>
 <select name="category" value="<?php echo $result["category"];?>" >
             <option value="-1">None</option>
-            <?php foreach ($products as $product): ?>
-                <option value="<?php safer_echo($product["category"]); ?>"
-                ><?php safer_echo($product["category"]); ?></option>
+            <?php foreach ($results as $result): ?>
+                <option value="<?php safer_echo($result["category"]); ?>"
+                ><?php safer_echo($result["category"]); ?></option>
             <?php endforeach; ?>
         </select>
 <div class="results">
