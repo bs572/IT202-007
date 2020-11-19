@@ -2,9 +2,20 @@
 <?php
 $query = "";
 $results = [];
-if (isset($_POST["query"])) {
+if (isset($_POST["query"])) 
     $query = $_POST["query"];
 }
+
+$db = getDB();
+$stmt = $db->prepare("SELECT distinct category from Products;");
+$r = $stmt->execute([":q" => "%$query%"]);
+if ($r) {
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+    flash("There was a problem fetching the results");
+}
+
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE name like :q LIMIT 10");
