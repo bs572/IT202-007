@@ -27,7 +27,7 @@ require_once(__DIR__ . "/../lib/helpers.php");
             <li><a href="<?php echo getURL("Admin/Products/list_products.php");?>">List Product</a></li>
             <li><a href="<?php echo getURL("Admin/Cart/list_cart.php");?>">List Cart</a></li>
         <?php endif; ?>
-        <?php if (has_role("Customer")): ?>
+        <?php if (has_role("User")): ?>
             <li><a href="<?php echo getURL("user_cart.php");?>">Cart</a></li>
             <?php endif; ?>
     </ul>
