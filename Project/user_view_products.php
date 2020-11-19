@@ -26,7 +26,7 @@ if (isset($id)) {
     <h5 class="card-title">Precision 7285</h5>
     <p class="card-text">Gen2 Precision 7285 class legal turbo for SportFWD, and World Cup Finals Super Street</p>
     <form method="POST">
-    <input type="hidden" name="productID" value="<?php echo $result["id"];?>"/>
+    <input type="hidden" name="productID" value="<?php echo $result["product_id"];?>"/>
     <input type="submit" value="Add to Cart"/>
     </form>
   </div>
