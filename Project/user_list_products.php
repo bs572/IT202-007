@@ -29,16 +29,16 @@ if (isset($_POST["search"]) && !empty($query)) {
 }
 ?>
 <h3>Search</h3>
-<select name="category" value="<?php echo $result["category"];?>" >
+
+<form method="POST">
+    <div class="form-group">    
+    <select name="category" value="<?php echo $result["category"];?>" >
             <option value="-1">None</option>
             <?php foreach ($cats as $cat): ?>
                 <option value="<?php safer_echo($cat["category"]); ?>"
                 ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
-
-<form method="POST">
-    <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input type="submit" value="Search" name="search"/>
     </div>
