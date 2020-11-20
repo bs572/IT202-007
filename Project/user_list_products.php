@@ -10,7 +10,7 @@ $db = getDB();
 $stmt = $db->prepare("SELECT distinct category from Products;");
 $r = $stmt->execute([":q" => "%$query%"]);
 if ($r) {
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 else {
     flash("There was a problem fetching the results");
@@ -31,8 +31,8 @@ if (isset($_POST["search"]) && !empty($query)) {
 <h3>Search</h3>
 <select name="category" value="<?php echo $result["category"];?>" >
             <option value="-1">None</option>
-            <?php foreach ($results as $result): ?>
-                <option value="<?php safer_echo($result["category"]); ?>"
+            <?php foreach ($cats as $cat): ?>
+                <option value="<?php safer_echo($cat["category"]); ?>"
                 ><?php safer_echo($result["category"]); ?></option>
             <?php endforeach; ?>
         </select>
