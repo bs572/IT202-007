@@ -2,6 +2,7 @@
 <?php
 $query = "";
 $results = [];
+$selectedCat = $_POST['category'];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
@@ -40,7 +41,6 @@ if (isset($_POST["search"]) && !empty($query)) {
             <?php endforeach; ?>
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="Search" name="search"/>
     </div>
 </form>
 
