@@ -29,6 +29,19 @@ if (isset($_POST["search"]) && !empty($query)) {
         flash("There was a problem fetching the results");
     }
 }
+
+if (!isset($_POST["search"]) && isset($_POST["category"]) && !empty($query)) {
+    $selectedCat = $_POST['category'];
+    $db = getDB();
+    $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE category = :cat LIMIT 10");
+    $r = $stmt->execute([":q" => "%$query%"]);
+    if ($r) {
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else {
+        flash("There was a problem fetching the results");
+    }
+}
 ?>
 <h3>Search</h3>
 
