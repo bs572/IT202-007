@@ -56,6 +56,7 @@ if (isset($_POST["search"]) && !empty($query)) {
             <?php endforeach; ?>
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
+        <input type="submit" value="Search" name="search"/>
     </div>
 </form>
 
@@ -85,7 +86,6 @@ if (isset($_POST["search"]) && !empty($query)) {
                         <a type="button" href="user_view_products.php?id=<?php safer_echo($r['id']); ?>">View Product</a>
                     </div>
                 </div> 
-            <?php endif; ?>
         <?php endforeach; ?>
         </div>
     <?php else: ?>
