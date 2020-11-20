@@ -63,7 +63,6 @@ if (isset($_POST["search"]) && !empty($query)) {
     <?php if (count($results) > 0): ?>
         <div class="list-group">
         <?php foreach ($results as $r): ?>
-               <?php if ($r["visibility"] == 1): ?>
                     <div class="list-group-item">
                     <div>
                         <div><?php safer_echo($r["name"]); ?></div>
