@@ -30,7 +30,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 }
 
-if (!isset($_POST["search"]) && isset($_POST["category"]) && !empty($query)) {
+if (!isset($_POST["search"]) && isset($_POST["category"])) {
     $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE category = :cat LIMIT 10");
