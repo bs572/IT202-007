@@ -9,7 +9,7 @@ if (isset($_POST["query"])) {
 
 $db = getDB();
 $stmt = $db->prepare("SELECT distinct category from Products;");
-$r = $stmt->execute([":cat" => "$category"]);
+$r = $stmt->execute([":cat" => "$selectedCat"]);
 if ($r) {
     $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
