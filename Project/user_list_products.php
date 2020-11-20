@@ -33,7 +33,7 @@ if (isset($_POST["search"]) && !empty($query)) {
             <option value="-1">None</option>
             <?php foreach ($cats as $cat): ?>
                 <option value="<?php safer_echo($cat["category"]); ?>"
-                ><?php safer_echo($result["category"]); ?></option>
+                ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
 
