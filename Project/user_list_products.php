@@ -2,14 +2,14 @@
 <?php
 $query = "";
 $results = [];
-$selectedCat = $_POST['category'];
+$selectedCat = '';
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 
 $db = getDB();
 $stmt = $db->prepare("SELECT distinct category from Products;");
-$r = $stmt->execute([":cat" => "%category%"]);
+$r = $stmt->execute([":cat" => "$category"]);
 if ($r) {
     $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -18,6 +18,7 @@ else {
 }
 
 if (isset($_POST["search"]) && !empty($query)) {
+    $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE name like :q AND category = :cat LIMIT 10");
     $r = $stmt->execute([":q" => "%$query%"]);
