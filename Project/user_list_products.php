@@ -2,7 +2,7 @@
 <?php
 $query = "";
 $results = [];
-if (isset($_POST["query"])) 
+if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 
