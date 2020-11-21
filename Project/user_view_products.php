@@ -4,6 +4,7 @@
 if (isset($_GET["id"])) {
     $productID = $_GET["id"];
     $userID = get_user_id();
+    $price = 0;
 }
 ?>
 <?php
@@ -23,17 +24,19 @@ if (isset($productID)) {
 
 <?php
 if(isset($_POST["quantity"])) {
-$db = getDB();
-$stmt = $db->prepare ("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
-$r = $stmt->execute([
-    ":productID" => $productID,
-    ":userID" => $userID,
-    ":quantity" => $_POST["quantity"]
-    ]);
-$result = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!$result) {
-    $e = $stmt->errorInfo();
-    flash($e[2]);
+    $db = getDB();
+    $price = $POST["price"];
+    $stmt = $db->prepare ("INSERT into Cart (`product_id`, `user_id`, `quantity`, `price`) VALUES (:productID, :userID, :quantity, :price) on duplicate key update quantity = :quantity");
+    $r = $stmt->execute([
+        ":productID" => $productID,
+        ":userID" => $userID,
+        ":quantity" => $_POST["quantity"],
+        ":price" => $price
+        ]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        $e = $stmt->errorInfo();
+        flash($e[2]);
     }
 }
 ?>
@@ -53,6 +56,7 @@ if (!$result) {
                             <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
                     </div>
                         <input type="submit" name="save" value="Add to Cart"/>
+                        <input type="hidden" name="price" value="<?php echo $result["price"]; ?>"/>
                 </form>
         </div>
     </div>
