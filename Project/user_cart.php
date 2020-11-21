@@ -65,7 +65,7 @@ if (isset($_POST["query"])) {
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title"><?php safer_echo($r["name"]); ?></h5>
-                <div>Price: <?php safer_echo($r["price"]); ?></div>
+                <div>Price: <?php safer_echo(($r["price"]* $r["quantity"])); ?></div>
                 <div><?php safer_echo($r["quantity"]); ?></div>
                 </div>
                 <form method="POST">
