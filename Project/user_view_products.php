@@ -24,7 +24,6 @@ if (isset($id)) {
         <div class="card-body">
         <h5 class="card-title"><?php safer_echo($result["name"]); ?></h5>
         <div class="card-body">
-        <p class="card-text">Stats
                 <div>Price: <?php safer_echo($result["price"]); ?></div>
                 <?php if ($result["quantity"] < 10): ?>   
                         <div><?php safer_echo("Only " . $result["quantity"] . " left in stock, order soon."); ?></div>
