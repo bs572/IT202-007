@@ -30,7 +30,7 @@ if (isset($_POST["query"])) {
 
 ?>
 <?php   
-    if(isset($_POST['quantity'])) {
+    if(isset($_POST["quantity"])) {
         $quantity = $_POST["quantity"];
         if($quantity == 0) {
             $_POST["id"] = $cartID;
@@ -68,8 +68,8 @@ if (isset($_POST["query"])) {
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                 </div>
                     <input type="submit" name="save" value="Update Quantity"/>
-                    <input type="hidden" name="cartID" value="<?php echo $r["id"]; ?>"/>
-                    <input type="hidden" name="productID" value="<?php echo $r["product_id"]; ?>"/>
+                    <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
+                    <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                 </form>
             <?php endforeach; ?>
         
