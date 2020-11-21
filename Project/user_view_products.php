@@ -20,6 +20,23 @@ if (isset($productID)) {
     }
 }
 ?>
+
+<?php
+if(isset($_POST["quantity"])) {
+$db = getDB();
+$stmt = $db->prepare ("INSERT into table Cart VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
+$r = $stmt->execute([
+    ":productID" => $productID,
+    ":userID" => $userID,
+    ":quantity" => $_POST["quantity"]
+    ]);
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$result) {
+    $e = $stmt->errorInfo();
+    flash($e[2]);
+    }
+}
+?>
 <?php if (isset($result) && !empty($result)): ?>
     <div class="card" style="width: 18rem;">
         <div class="card-body">
@@ -35,7 +52,7 @@ if (isset($productID)) {
                         <label>Quantity</label>
                             <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
                     </div>
-                        <input type="submit" name="save" value="Update"/>
+                        <input type="submit" name="save" value="Add to Cart"/>
                 </form>
         </div>
     </div>
