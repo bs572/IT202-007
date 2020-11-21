@@ -86,7 +86,7 @@ if (isset($_POST["query"])) {
         </div>
         <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                <h5 class="card-title"><?php safer_echo($subtotal); ?></h5>
+                <h5 class="card-title">Subtotal<?php safer_echo($subtotal); ?></h5>
         </div> </div> </div>
         <form method="POST">
             <div class="form-group">
