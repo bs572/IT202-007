@@ -67,6 +67,9 @@ if (isset($_POST["query"])) {
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                 </div>
+               <?php echo var_export( $r["quantity"]); ?>
+               <?php echo var_export( $r["id"]); ?>
+               <?php echo var_export( $r["product_id"]); ?>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
