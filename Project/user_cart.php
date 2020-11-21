@@ -31,11 +31,9 @@ if (isset($_POST["query"])) {
 ?>
 <?php   
     if(isset($_POST["quantity"])) {
-        echo "quantity is set";
         echo var_export($stmt->errorInfo(),true);
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
-            echo "quantity is 0";
             $_POST["id"] = $cartID;
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
@@ -43,7 +41,6 @@ if (isset($_POST["query"])) {
              echo var_export($stmt->errorInfo(),true);
         }
         if ($quantity != 0 ) {
-            echo "quantity is not 0";
             $_POST["product_id"] = $productID;
             $db = getDB();
             $stmt = $db->prepare("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
@@ -76,6 +73,7 @@ if (isset($_POST["query"])) {
                <?php echo var_export( $r["quantity"]); ?>
                <?php echo var_export( $r["id"]); ?>
                <?php echo var_export( $r["product_id"]); ?>
+               <?php echo var_export( $userID); ?>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
