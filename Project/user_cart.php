@@ -35,7 +35,14 @@ if (isset($_POST["query"])) {
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
                 <div><?php safer_echo($r["quantity"]); ?></div>
                 </div>
+                <div class="form-group">
+        <label>Quantity</label>
+        <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
+    </div>
+        <input type="submit" name="save" value="Update Quantity"/>
+    </form>
             <?php endforeach; ?>
+        
         </div>
     <?php else: ?>
         <p>Your cart is empty, but it doesn't have to be that way.</p>
