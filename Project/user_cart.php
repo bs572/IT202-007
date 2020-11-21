@@ -14,7 +14,7 @@ $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
-if (isset($_POST["search"]) && !empty($query)) {
+if (!empty($query)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT Cart.price, name, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
     $r = $stmt->execute([
