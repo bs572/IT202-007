@@ -32,7 +32,7 @@ if (isset($_POST["query"])) {
 <?php   
     if(isset($_POST['quantity'])) {
         $quantity = $_POST["quantity"];
-        if(quantity == 0) {
+        if($quantity == 0) {
             $_POST["id"] = $cartID;
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
