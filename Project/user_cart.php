@@ -13,6 +13,7 @@ $cartID = 0;
 $productID = 0;
 $results = [];
 $quantity = 0;
+$subtotal = 0;
 
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
@@ -62,6 +63,7 @@ if (isset($_POST["query"])) {
 <div class="results">
     <?php if (count($results) > 0): ?>
             <?php foreach ($results as $r): ?>
+               <?php  $subtotal += ($r["price"]*$r["quantity"]); ?>
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title"><?php safer_echo($r["name"]); ?></h5>
@@ -73,10 +75,6 @@ if (isset($_POST["query"])) {
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                 </div>
-               <?php echo var_export( $r["quantity"]); ?>
-               <?php echo var_export( $r["id"]); ?>
-               <?php echo var_export( $r["product_id"]); ?>
-               <?php echo var_export( $userID); ?>
                     <input type="hidden" name="quantity" value="0"/>
                     <input type="submit" name="quantity" value="Remove Item"/>
                     <input type="submit" name="save" value="Update Quantity"/>
@@ -86,6 +84,10 @@ if (isset($_POST["query"])) {
             <?php endforeach; ?>
            
         </div>
+        <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title"><?php safer_echo($subtotal); ?></h5>
+        </div> </div> </div>
         <form method="POST">
             <div class="form-group">
             <input type="submit" name="clearAll" value="Empty Cart"/>
