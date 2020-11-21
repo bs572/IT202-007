@@ -8,15 +8,19 @@ if (!is_logged_in()) {
 ?>
 
 <?php
-$id=get_user_id();
+$userID=get_user_id();
+$cartID = 0;
+$productID = 0;
 $results = [];
+$quantity = 0;
+
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 
     $db = getDB();
     $stmt = $db->prepare("SELECT Cart.price, name, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
-    $r = $stmt->execute([":user_id"=> $id,]);
+    $r = $stmt->execute([":user_id"=> $userID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -25,6 +29,29 @@ if (isset($_POST["query"])) {
     }
 
 ?>
+<?php   
+    if(isset($_POST['quantity'])) {
+        $quantity = $_POST["quantity"];
+        if(quantity == 0) {
+            $_POST["id"] = $cartID;
+            $db = getDB();
+            $stmt = $db->prepare("DELETE From Cart where id = :cartID");
+            $r = $stmt->execute([":cartID"=> $cartID,]);
+        }
+        if ($quantity != 0 ) {
+            $_POST["product_id"] = $productID;
+            $db = getDB();
+            $stmt = $db->prepare("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
+            $r = $stmt->execute([
+                ":productID" => $productID,
+                ":userID" => $userID,
+                ":quantity" => $quantity
+                ]);
+    }
+    }
+
+?>
+
 <h3>Your Cart</h3>
 <div class="results">
     <?php if (count($results) > 0): ?>
@@ -35,12 +62,15 @@ if (isset($_POST["query"])) {
                 <div>Price: <?php safer_echo($r["price"]); ?></div>
                 <div><?php safer_echo($r["quantity"]); ?></div>
                 </div>
+                <form method="POST">
                 <div class="form-group">
-        <label>Quantity</label>
-        <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
-    </div>
-        <input type="submit" name="save" value="Update Quantity"/>
-    </form>
+                    <label>Quantity</label>
+                    <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
+                </div>
+                    <input type="submit" name="save" value="Update Quantity"/>
+                    <input type="hidden" name="cartID" value="<?php echo $r["id"]; ?>"/>
+                    <input type="hidden" name="productID" value="<?php echo $r["product_id"]; ?>"/>
+                </form>
             <?php endforeach; ?>
         
         </div>
