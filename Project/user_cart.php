@@ -19,7 +19,7 @@ if (isset($_POST["query"])) {
 }
 
     $db = getDB();
-    $stmt = $db->prepare("SELECT Cart.price, name, product_id Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
+    $stmt = $db->prepare("SELECT Cart.price, name, product_id, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
     $r = $stmt->execute([":user_id"=> $userID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
