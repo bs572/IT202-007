@@ -9,7 +9,7 @@ if (isset($_GET["id"])) {
 <?php
 //fetching
 $result = [];
-if (isset($id)) {
+if (isset($productID)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT name, price, quantity, description, user_id, Users.username FROM Products JOIN Users on Products.user_id = Users.id where Products.id = :id");
     $r = $stmt->execute([":id" => $productID]);
