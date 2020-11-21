@@ -84,10 +84,12 @@ if (isset($_POST["query"])) {
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                 </form>
             <?php endforeach; ?>
+           
+        </div>
+        <form method="POST">
             <div class="form-group">
             <input type="submit" name="clearAll" value="Empty Cart"/>
             </form>
-        </div>
     <?php else: ?>
         <p>Your cart is empty, but it doesn't have to be that way.</p>
     <?php endif; ?>
