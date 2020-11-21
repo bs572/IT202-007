@@ -32,7 +32,7 @@ if (isset($_POST["query"])) {
 <?php   
     if(isset($_POST["quantity"])) {
         echo "quantity is set";
-        var_export($stmt->errorInfo();
+        var_export($stmt->errorInfo(),true);
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
             echo "quantity is 0";
