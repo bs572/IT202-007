@@ -31,14 +31,17 @@ if (isset($_POST["query"])) {
 ?>
 <?php   
     if(isset($_POST["quantity"])) {
+        echo "quantity is set";
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
+            echo "quantity is 0";
             $_POST["id"] = $cartID;
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
             $r = $stmt->execute([":cartID"=> $cartID,]);
         }
         if ($quantity != 0 ) {
+            echo "quantity is not 0";
             $_POST["product_id"] = $productID;
             $db = getDB();
             $stmt = $db->prepare("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
