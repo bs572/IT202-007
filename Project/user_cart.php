@@ -27,7 +27,6 @@ if (isset($_POST["query"])) {
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
             $r = $stmt->execute([":cartID"=> $cartID,]);
-             echo var_export($stmt->errorInfo(),true);
         }
         if ($quantity != 0 ) {
             $productID = $_POST["product_id"];
@@ -38,9 +37,14 @@ if (isset($_POST["query"])) {
                 ":userID" => $userID,
                 ":quantity" => $quantity
                 ]);
-                echo var_export($stmt->errorInfo(),true);
     }
     }
+    if(isset($_POST["clearAll"])) {
+        $db = getDB();
+        $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
+        $r = $stmt->execute([":userID"=> $userID,]);
+    }
+    
     $db = getDB();
     $stmt = $db->prepare("SELECT Cart.price, name, product_id, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
     $r = $stmt->execute([":user_id"=> $userID,]);
@@ -73,12 +77,16 @@ if (isset($_POST["query"])) {
                <?php echo var_export( $r["id"]); ?>
                <?php echo var_export( $r["product_id"]); ?>
                <?php echo var_export( $userID); ?>
+                    <input type="hidden" name="quantity" value="0"/>
+                    <input type="submit" name="quantity" value="Remove Item"/>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                 </form>
             <?php endforeach; ?>
-        
+            <div class="form-group">
+            <input type="submit" name="clearAll" value="Empty Cart"/>
+            </form>
         </div>
     <?php else: ?>
         <p>Your cart is empty, but it doesn't have to be that way.</p>
