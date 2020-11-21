@@ -34,7 +34,7 @@ if (isset($_POST["query"])) {
         echo var_export($stmt->errorInfo(),true);
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
-            $_POST["id"] = $cartID;
+            $cartID = $_POST["id"];
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
             $r = $stmt->execute([":cartID"=> $cartID,]);
