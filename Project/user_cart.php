@@ -28,26 +28,17 @@ if (isset($_POST["query"])) {
 <h3>Your Cart</h3>
 <div class="results">
     <?php if (count($results) > 0): ?>
-        <div class="list-group">
             <?php foreach ($results as $r): ?>
-                <div class="list-group-item">
-                    <div>
-                        <div>Name:</div>
-                        <div><?php safer_echo($r["name"]); ?></div>
-                    </div>
-                    <div>
-                        <div>Price:</div>
-                        <div><?php safer_echo($r["price"]); ?></div>
-                    </div>
-                    <div>
-                        <div>Quantity:</div>
-                        <div><?php safer_echo($r["quantity"]); ?></div>
-                    </div>
+                <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title"><?php safer_echo($r["name"]); ?></h5>
+                <div>Price: <?php safer_echo($r["price"]); ?></div>
+                <div><?php safer_echo($r["quantity"]); ?></div>
                 </div>
             <?php endforeach; ?>
         </div>
     <?php else: ?>
         <p>Your cart is empty, but it doesn't have to be that way.</p>
     <?php endif; ?>
-</div>
+
 <?php require(__DIR__ . "/partials/flash.php");
