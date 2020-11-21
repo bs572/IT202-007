@@ -20,17 +20,14 @@ if (isset($id)) {
 }
 ?>
 <?php if (isset($result) && !empty($result)): ?>
-    <div class="card">
-        <div class="card-title">
-            <?php safer_echo($result["name"]); ?>
-        </div>
+    <div class="card" style="width: 18rem;">
         <div class="card-body">
-            <div>
-                <p>Stats</p>
+        <h5 class="card-title"><?php safer_echo($result["name"]); ?></h5>
+        <div class="card-body">
+        <p class="card-text">Stats
                 <div>Price: <?php safer_echo($result["price"]); ?></div>
                 <div>Quantity: <?php safer_echo($result["quantity"]); ?></div>
-                <div>Description <?php safer_echo($result["description"]); ?></div>
-            </div>
+                <div>Description <?php safer_echo($result["description"]); ?></div></p>
         </div>
     </div>
 <?php else: ?>
