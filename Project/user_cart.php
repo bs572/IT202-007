@@ -40,6 +40,7 @@ if (isset($_POST["query"])) {
             $db = getDB();
             $stmt = $db->prepare("DELETE From Cart where id = :cartID");
             $r = $stmt->execute([":cartID"=> $cartID,]);
+            var_export($stmt->errorInfo(),true);
         }
         if ($quantity != 0 ) {
             echo "quantity is not 0";
@@ -51,6 +52,7 @@ if (isset($_POST["query"])) {
                 ":userID" => $userID,
                 ":quantity" => $quantity
                 ]);
+                var_export($stmt->errorInfo(),true);
     }
     }
 
