@@ -21,7 +21,6 @@ if (isset($_POST["query"])) {
 ?>
 <?php   
     if(isset($_POST["quantity"])) {
-        echo var_export($stmt->errorInfo(),true);
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
             $cartID = $_POST["id"];
