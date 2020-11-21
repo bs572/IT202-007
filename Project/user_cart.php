@@ -8,7 +8,7 @@ if (!is_logged_in()) {
 ?>
 
 <?php
-$userID=get_user_id();
+$userID = get_user_id();
 $cartID = 0;
 $productID = 0;
 $results = [];
@@ -32,6 +32,7 @@ if (isset($_POST["query"])) {
 <?php   
     if(isset($_POST["quantity"])) {
         echo "quantity is set";
+        var_export($stmt->errorInfo();
         $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
             echo "quantity is 0";
