@@ -2,7 +2,8 @@
 <?php
 //we'll put this at the top so both php block have access to it
 if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+    $productID = $_GET["id"];
+    $userID = get_user_id();
 }
 ?>
 <?php
@@ -11,7 +12,7 @@ $result = [];
 if (isset($id)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT name, price, quantity, description, user_id, Users.username FROM Products JOIN Users on Products.user_id = Users.id where Products.id = :id");
-    $r = $stmt->execute([":id" => $id]);
+    $r = $stmt->execute([":id" => $productIDI]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
@@ -29,6 +30,13 @@ if (isset($id)) {
                         <div><?php safer_echo("Only " . $result["quantity"] . " left in stock, order soon."); ?></div>
                    <?php endif;?>
                 <div>Description: <?php safer_echo($result["description"]); ?></div></p>
+                <form method="POST">
+                    <div class="form-group">
+                        <label>Quantity</label>
+                            <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
+                    </div>
+                        <input type="submit" name="save" value="Update"/>
+                </form>
         </div>
     </div>
 <?php else: ?>
