@@ -12,7 +12,7 @@ $result = [];
 if (isset($id)) {
     $db = getDB();
     $stmt = $db->prepare("SELECT name, price, quantity, description, user_id, Users.username FROM Products JOIN Users on Products.user_id = Users.id where Products.id = :id");
-    $r = $stmt->execute([":id" => $productIDI]);
+    $r = $stmt->execute([":id" => $productID]);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
