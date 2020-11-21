@@ -35,7 +35,7 @@ if (isset($id)) {
     <p>Error looking up id...</p>
 <?php endif; ?>
 <?php 
-if (isset($_POST["save"])) {
+if (isset($_POST["Add To Cart"])) {
     $id = $_POST["product_id"];
     //TODO add proper validation/checks
     $pr = $_POST["price"];
