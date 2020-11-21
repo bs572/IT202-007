@@ -16,7 +16,7 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $db = getDB();
-    $stmt = $db->prepare("SELECT Cart.price, name, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id and Products.name like :q LIMIT 10");
+    $stmt = $db->prepare("SELECT Cart.price, name, Cart.id, Cart.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
     $r = $stmt->execute([
         ":q" => "%$query%",
         ":user_id"=> $id,
@@ -30,12 +30,6 @@ if (isset($_POST["search"]) && !empty($query)) {
 }
 ?>
 <h3>Your Cart</h3>
-<form method="POST">
-    <div class="form-group">    
-        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="Search" name="search"/>
-    </div>
-    </form>
 <div class="results">
     <?php if (count($results) > 0): ?>
         <div class="list-group">
