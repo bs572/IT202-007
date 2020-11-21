@@ -24,7 +24,7 @@ if (isset($productID)) {
 <?php
 if(isset($_POST["quantity"])) {
 $db = getDB();
-$stmt = $db->prepare ("INSERT into Cart VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
+$stmt = $db->prepare ("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
 $r = $stmt->execute([
     ":productID" => $productID,
     ":userID" => $userID,
