@@ -41,7 +41,7 @@ if (isset($_POST["query"])) {
              echo var_export($stmt->errorInfo(),true);
         }
         if ($quantity != 0 ) {
-            $_POST["product_id"] = $productID;
+            $productID = $_POST["product_id"];
             $db = getDB();
             $stmt = $db->prepare("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
             $r = $stmt->execute([
