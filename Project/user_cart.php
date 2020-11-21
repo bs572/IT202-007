@@ -31,7 +31,7 @@ if (isset($_POST["query"])) {
 ?>
 <?php   
     if(isset($_POST["quantity"])) {
-        $quantity = $_POST["quantity"];
+        $quantity = (int)$_POST["quantity"];
         if($quantity == 0) {
             $_POST["id"] = $cartID;
             $db = getDB();
