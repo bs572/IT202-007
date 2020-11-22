@@ -3,7 +3,7 @@
 $query = "";
 $results = [];
 $selectedCat = '';
-$dbQuery = "SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE 1 = 1";
+$dbQuery = "SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE 1 = 1 AND visibility = 1";
 $params = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
