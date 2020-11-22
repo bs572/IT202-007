@@ -4,6 +4,7 @@ $query = "";
 $results = [];
 $selectedCat = '';
 $dbQuery = "SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE 1 = 1 AND visibility = 1";
+$sort = "default";
 $params = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
@@ -31,6 +32,11 @@ if (isset($_POST["Search"])) {
         $dbQuery .= "AND name like :q";
         $params[":q"] = $query;
     }
+    if(isset($_POST["sort"]) && $_POST["sort"] == "price") {
+        $sort = "price";
+        $query .= " ORDER BY $sort ASC";
+    }
+    
     $db = getDB();
     $stmt = $db->prepare($dbQuery);
     $r = $stmt->execute($params);
@@ -57,6 +63,7 @@ if (isset($_POST["Search"])) {
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input type="submit" value="search" name="Search"/>
+        <input type="submit" value="sort" name="price"/>
     </div>
 </form>
 
