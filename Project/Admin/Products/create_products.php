@@ -25,9 +25,6 @@ if (!has_role("Admin")) {
 		<label>Description</label>
 		<input type="text" name="description"/>
 	</div>
-	<div class="form-group">
-		<input type="checkbox" name="visibility"/>
-	</div>
 	<input type="submit" name="save" value="Create"/>
 </form>
 
