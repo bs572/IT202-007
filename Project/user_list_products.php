@@ -20,6 +20,7 @@ else {
 if (isset($_POST["Search"]) && !empty($query)) {
     echo $_POST["category"];
     echo $_POST["Search"];
+    echo $query;
     $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE name like :q AND category = :cat AND visibility = 1 LIMIT 10");
