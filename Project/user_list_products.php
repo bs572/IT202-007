@@ -57,8 +57,8 @@ if (empty($_POST["search"]) && isset($_POST["category"])) {
                 ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
-        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="Search" name="search"/>
+        <input name="query" placeholder="search" value="<?php safer_echo($query); ?>"/>
+        <input type="submit" value="search" name="search"/>
     </div>
 </form>
 
