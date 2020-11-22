@@ -75,6 +75,7 @@ if (isset($_POST["query"])) {
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <input type="submit" name="save" value="Update Quantity"/>
+                    <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                 </div>
                 </form>
                 <form method="POST">
@@ -84,9 +85,9 @@ if (isset($_POST["query"])) {
                     <div>
                     <form method="POST">
                         <a type="button" href="user_view_product_cart.php?id=<?php safer_echo($r['product_id']); ?>">View Product</a>
-                    </div>
                         <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
                         <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
+                    </div>
                     </form>
             <?php endforeach; ?>
            
