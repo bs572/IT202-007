@@ -18,6 +18,7 @@ else {
 }
 
 if (isset($_POST["search"]) && !empty($query)) {
+    echo $_POST["search"];
     $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE name like :q AND category = :cat AND visibility = 1 LIMIT 10");
@@ -31,6 +32,7 @@ if (isset($_POST["search"]) && !empty($query)) {
 }
 
 if (empty($_POST["search"]) && isset($_POST["category"])) {
+    echo $_POST["search"];
     $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE category = :cat AND visibility = 1 LIMIT 10");
