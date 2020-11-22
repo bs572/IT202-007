@@ -74,16 +74,20 @@ if (isset($_POST["query"])) {
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
-                </div>
-                    <input type="hidden" name="quantity" value="0"/>
-                    <input type="submit" name="quantity" value="Remove Item"/>
                     <input type="submit" name="save" value="Update Quantity"/>
+                </div>
+                </form>
+                <form method="POST">
+                    <input type="hidden" name="quantity" value="0"/>
+                        <input type="submit" name="quantity" value="Remove Item"/>        
+                </form>
                     <div>
+                    <form method="POST">
                         <a type="button" href="user_view_product_cart.php?id=<?php safer_echo($r['product_id']); ?>">View Product</a>
                     </div>
-                    <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
-                    <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
-                </form>
+                        <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
+                        <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
+                    </form>
             <?php endforeach; ?>
            
         </div>
