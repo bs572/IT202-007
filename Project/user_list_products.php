@@ -32,7 +32,7 @@ if (isset($_POST["Search"])) {
         $params[":q"] = $query;
     }
     $db = getDB();
-    $stmt = $db->prepare($query);
+    $stmt = $db->prepare($dbQuery);
     $r = $stmt->execute($params);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
