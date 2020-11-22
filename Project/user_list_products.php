@@ -19,7 +19,6 @@ else {
 
 if (isset($_POST["Search"]) && !empty($query)) {
     echo $_POST["category"];
-    echo $_POST["search"];
     echo $_POST["Search"];
     $selectedCat = $_POST['category'];
     $db = getDB();
