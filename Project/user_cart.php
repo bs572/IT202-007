@@ -76,11 +76,14 @@ if (isset($_POST["query"])) {
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
+                    <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
                 </div>
                 </form>
                 <form method="POST">
                     <input type="hidden" name="quantity" value="0"/>
-                        <input type="submit" name="quantity" value="Remove Item"/>        
+                    <input type="submit" name="quantity" value="Remove Item"/>
+                    <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
+                    <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>        
                 </form>
                     <div>
                     <form method="POST">
