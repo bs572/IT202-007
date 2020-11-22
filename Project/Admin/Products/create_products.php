@@ -22,8 +22,11 @@ if (!has_role("Admin")) {
 		<input type="number" min="0" name="quantity"/>
 	</div>
 	<div class="form-group">
-	<label>Description</label>
-	<input type="text" name="description"/>
+		<label>Description</label>
+		<input type="text" name="description"/>
+	</div>
+	<div class="form-group">
+		<input type="checkbox" name="visibility"/>
 	</div>
 	<input type="submit" name="save" value="Create"/>
 </form>
