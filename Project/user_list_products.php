@@ -17,7 +17,7 @@ else {
     flash("There was a problem fetching the results");
 }
 
-if (isset($_POST["search"]) && !empty($query)) {
+if (isset($_POST["Search"]) && !empty($query)) {
     echo $_POST["category"];
     echo $_POST["search"];
     echo $_POST["Search"];
