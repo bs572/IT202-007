@@ -3,6 +3,8 @@
 $query = "";
 $results = [];
 $selectedCat = '';
+$dbQuery = "SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE 1 = 1";
+$params = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
@@ -21,11 +23,17 @@ if (isset($_POST["Search"])) {
     echo $_POST["category"];
     echo $query;
     $selectedCat = $_POST['category'];
+    if ($selectedCat != -1){
+        $dbQuery .= "AND category = :cat";
+        $params[":cat"] = $selectedCat; 
+    }
+    if ($query != "") {
+        $dbQuery .= "AND name like :q";
+        $params[":q"] = $query;
+    }
     $db = getDB();
-    $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE 1 = 1");
-    $r = $stmt->execute([":q" => "%$query%", 
-    ":cat" => $selectedCat
-    ]);
+    $stmt = $db->prepare($query);
+    $r = $stmt->execute($params);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
