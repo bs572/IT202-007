@@ -18,11 +18,13 @@ else {
 }
 
 if (isset($_POST["search"]) && !empty($query)) {
-    echo $_POST["search"];
+    echo $_POST["category"];
     $selectedCat = $_POST['category'];
     $db = getDB();
     $stmt = $db->prepare("SELECT name, id, price, category, quantity, description, visibility, user_id from Products WHERE name like :q AND category = :cat AND visibility = 1 LIMIT 10");
-    $r = $stmt->execute([":q" => "%$query%", ":cat" => $selectedCat]);
+    $r = $stmt->execute([":q" => "%$query%", 
+    ":cat" => $selectedCat
+    ]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
