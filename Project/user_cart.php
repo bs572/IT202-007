@@ -86,12 +86,8 @@ if (isset($_POST["query"])) {
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>        
                 </form>
                     <div>
-                    <form method="POST">
                         <a type="button" href="user_view_product_cart.php?id=<?php safer_echo($r['product_id']); ?>">View Product</a>
-                        <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
-                        <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                     </div>
-                    </form>
             <?php endforeach; ?>
            
         </div>
