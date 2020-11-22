@@ -81,7 +81,7 @@ if (isset($_POST["query"])) {
                 </form>
                 <form method="POST">
                     <input type="hidden" name="quantity" value="0"/>
-                    <input type="submit" name="quantity" value="Remove Item"/>
+                    <input type="submit" value="Remove Item"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>        
                 </form>
