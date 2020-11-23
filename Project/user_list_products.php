@@ -64,6 +64,7 @@ if (isset($_POST["Search"])) {
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input type="submit" value="search" name="Search"/>
+        <label>Sort by Ascending Price</label>
         <input type="radio" value ="sort" name = "sort"/>
     </div>
 </form>
