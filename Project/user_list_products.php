@@ -32,7 +32,7 @@ if (isset($_POST["Search"])) {
         $dbQuery .= " AND name like :q ";
         $params[":q"] = $query;
     }
-    if(isset($_POST["sort"]) && $_POST["sort"] == "price") {
+    if(isset($_POST["sort"])) {
         $sort = "price";
         echo $sort;
         $query .= " ORDER BY $sort ASC";
