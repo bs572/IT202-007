@@ -25,11 +25,11 @@ if (isset($_POST["Search"])) {
     echo $query;
     $selectedCat = $_POST['category'];
     if ($selectedCat != -1){
-        $dbQuery .= "AND category = :cat";
+        $dbQuery .= " AND category = :cat ";
         $params[":cat"] = $selectedCat; 
     }
     if ($query != "") {
-        $dbQuery .= "AND name like :q";
+        $dbQuery .= " AND name like :q ";
         $params[":q"] = $query;
     }
     if(isset($_POST["sort"]) && $_POST["sort"] == "price") {
@@ -63,7 +63,6 @@ if (isset($_POST["Search"])) {
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input type="submit" value="search" name="Search"/>
-        <input type="submit" value="price" name="price"/>
     </div>
 </form>
 
