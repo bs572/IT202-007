@@ -63,6 +63,7 @@ if (isset($_POST["Search"])) {
         </select>
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input type="submit" value="search" name="Search"/>
+        <input type="checkbox" value ="sort" name = "sort"/>
     </div>
 </form>
 
