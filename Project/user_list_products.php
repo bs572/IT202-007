@@ -21,8 +21,7 @@ else {
 }
 
 if (isset($_POST["Search"])) {
-    echo $_POST["category"];
-    echo $query;
+
     $selectedCat = $_POST['category'];
     if ($selectedCat != -1){
         $dbQuery .= " AND category = :cat ";
@@ -34,7 +33,6 @@ if (isset($_POST["Search"])) {
     }
     if(isset($_POST["sort"])) {
         $sort = "price";
-        echo $sort;
         $dbQuery .= " ORDER BY $sort ASC";
     }
     
