@@ -34,6 +34,7 @@ if (isset($_POST["Search"])) {
     }
     if(isset($_POST["sort"]) && $_POST["sort"] == "price") {
         $sort = "price";
+        echo $sort;
         $query .= " ORDER BY $sort ASC";
     }
     
