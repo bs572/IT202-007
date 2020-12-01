@@ -58,6 +58,12 @@ function flash($msg) {
     }
 
 }
+function getURL($path) {
+    if (substr($path,0,1) == "/") {
+        return $path;
+    }
+    return $_SERVER["CONTEXT_PREFIX"]. "/IT202-007/Project/$path";
+}
 
 function getMessages() {
     if (isset($_SESSION['flash'])) {
