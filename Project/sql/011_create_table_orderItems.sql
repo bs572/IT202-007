@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS 'OrderItems'
+CREATE TABLE IF NOT EXISTS `OrderItems`
 (
     `id`         int auto_increment not null,
     `product_id`    int,

@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS 'Orders' (
+CREATE TABLE IF NOT EXISTS `Orders` (
 	`id` int auto_increment,
 	`product_id` int,
 	`user_id` int,
