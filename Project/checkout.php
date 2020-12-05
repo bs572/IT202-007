@@ -62,7 +62,7 @@ $db = getDB();
         ":pmethod" => $paymentMethod,
         "quantity" => $quantity
         ]);
-
+        endif;
 ?>
 
 
