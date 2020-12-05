@@ -22,7 +22,10 @@ $address = "";
 
 $db = getDB();
     $stmt = $db->prepare("SELECT * from PaymentMethods");
-    $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $r = $stmt->execute();
+    if ($r) {
+        $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
 
