@@ -16,6 +16,7 @@ $results = [];
 $quantity = 0;
 $subtotal = 0;
 $payments = [];
+$paymentMethod ="";
 $address = "";
 $noError = True;
 
@@ -41,12 +42,25 @@ $db = getDB();
 
 
 
-
-    $stmt = $db->prepare("INSERT into Orders (`product_id`, `user_id`, `quantity`, `payment_method`, id, `address`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
-    $r = $stmt->execute([
-        ":productID" => $productID,
+    if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
+        $paymentMethod = $_POST["payment_method"];
+        $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"];
+        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, id, `address`) VALUES (:userID, :tprice, :pmethod, :addr) on duplicate key update quantity = :quantity");
+        $r = $stmt->execute([
+        ":tprice" => $subtotal,
         ":userID" => $userID,
-        ":quantity" => $quantity
+        ":pmethod" => $paymentMethod,
+        ":addr" => $address
+        ]);
+
+
+
+        $stmt = $db->prepare("INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, id, ) VALUES (:userID, :uprice, :product_id, :quantity) on duplicate key update quantity = :quantity");
+        $r = $stmt->execute([
+        ":uprice" => $subtotal,
+        ":userID" => $userID,
+        ":pmethod" => $paymentMethod,
+        "quantity" => $quantity
         ]);
 
 ?>
@@ -68,7 +82,11 @@ $db = getDB();
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <?php if ($r["pquantity"] < $r["quantity"]): ?>
-                    <?php echo "Quantity too high" ?>
+                    <?php echo "Quantity too high";
+                    $noError = False; 
+                    endif; ?>
+                     <?php if ($r["pquantity"] > $r["quantity"]): ?>
+                    <?php $noError = True; ?>
                 <?php endif; ?>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
@@ -111,10 +129,9 @@ $db = getDB();
         <input type="submit" name="save" value="Payment"/>
 </form>
 <form method="POST">
-        <input type="text" name="Street Line 1" value="Street Line 1"/>
-        <input type="text" name="Street Line 2" value="Street Line 2"/>
-        <input type="text" name="City" value="City"/>
-        <input type="number" name="Zip Code" value="Zip Code"/>
-
+        <input type="text" name="streetLine1" value="Street Line 1"/>
+        <input type="text" name="streetLine2" value="Street Line 2"/>
+        <input type="text" name="city" value="City"/>
+        <input type="number" name="zipCode" value="Zip Code"/>
         <input type="submit" name="save" value="Address"/>
 </form>
