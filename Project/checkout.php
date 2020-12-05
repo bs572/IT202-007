@@ -95,7 +95,7 @@ $db = getDB();
             <select name="id" value="<?php echo $result["id"];?>" >
                 <option value="-1">None</option>
                 <?php foreach ($payments as $payment): ?>
-                    <option value="<?php safer_echo($payment); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                    <option value="<?php safer_echo($payment["payment_method"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
                     ><?php safer_echo($product["name"]); ?></option>
                 <?php endforeach; ?>
             </select>
