@@ -7,6 +7,6 @@ CREATE TABLE IF NOT EXISTS `Orders` (
     `modified`    TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP on update current_timestamp,
     `created`     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
 	primary key (id),
-	foreign key (user_id) references Users(id),
+	foreign key (user_id) references Users(id)
 
 )
