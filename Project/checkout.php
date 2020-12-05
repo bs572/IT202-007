@@ -17,7 +17,7 @@ $quantity = 0;
 $subtotal = 0;
 $payments = [];
 $address = "";
-
+$noError = True;
 
 
 $db = getDB();
@@ -39,6 +39,8 @@ $db = getDB();
         flash("There was a problem fetching the results " . var_export($stmt->errorInfo(), true));
     }
 
+
+if ( $noError, isset($_POST[]))
 
     $stmt = $db->prepare("INSERT into Orders (`product_id`, `user_id`, `quantity`, `payment_method`, id, `address`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
     $r = $stmt->execute([
@@ -109,6 +111,10 @@ $db = getDB();
         <input type="submit" name="save" value="Payment"/>
 </form>
 <form method="POST">
-        <input type="text" name="address" value="Address"/>
+        <input type="text" name="Street Line 1" value="Address"/>
+        <input type="text" name="Street Line 2" value="Address"/>
+        <input type="text" name="City" value="Address"/>
+        <input type="number" name="Zip Code" value="Address"/>
+
         <input type="submit" name="save" value="Address"/>
 </form>
