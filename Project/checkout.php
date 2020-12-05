@@ -62,9 +62,9 @@ $db = getDB();
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
-                    <?php if ($r["pquantity"] < $r("quantity")) ?>
+                    <?php if ($r["pquantity"] < $r("quantity")): ?>
                     <?php echo "Quantity too high" ?>
-            <?php endif; ?>
+                <?php endif; ?>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
