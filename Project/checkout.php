@@ -111,10 +111,10 @@ $db = getDB();
         <input type="submit" name="save" value="Payment"/>
 </form>
 <form method="POST">
-        <input type="text" name="Street Line 1" value="Address"/>
-        <input type="text" name="Street Line 2" value="Address"/>
-        <input type="text" name="City" value="Address"/>
-        <input type="number" name="Zip Code" value="Address"/>
+        <input type="text" name="Street Line 1" value="Street Line 1"/>
+        <input type="text" name="Street Line 2" value="Street Line 2"/>
+        <input type="text" name="City" value="City"/>
+        <input type="number" name="Zip Code" value="Zip Code"/>
 
         <input type="submit" name="save" value="Address"/>
 </form>
