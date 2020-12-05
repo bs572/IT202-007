@@ -92,11 +92,11 @@ $db = getDB();
 
 
 <label>Payment Method</label>
-            <select name="id" value="<?php echo $payment["payment_method"];?>" >
+            <select name="payment_method" value="<?php echo $payment["payment_method"];?>" >
                 <option value="-1">None</option>
                 <?php foreach ($payments as $payment): ?>
                     <option value="<?php safer_echo($payment["payment_method"]); ?>" 
-                    ><?php safer_echo($payment["payment_method"]); ?></option>
+                    ><?php safer_echo($payment["payment_method"]); ?></option> <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
                 <?php endforeach; ?>
             </select>
             <?php endif; ?>
