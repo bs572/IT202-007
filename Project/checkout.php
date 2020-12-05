@@ -40,7 +40,7 @@ $db = getDB();
     }
 
 
-if ( $noError, isset($_POST[]))
+
 
     $stmt = $db->prepare("INSERT into Orders (`product_id`, `user_id`, `quantity`, `payment_method`, id, `address`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
     $r = $stmt->execute([
