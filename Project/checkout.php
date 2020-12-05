@@ -15,13 +15,19 @@ $productID = 0;
 $results = [];
 $quantity = 0;
 $subtotal = 0;
+$payments = [];
 $address = "";
 
 
 
+$db = getDB();
+    $stmt = $db->prepare("SELECT * from PaymentMethods");
+    $payments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 $db = getDB();
-    $stmt = $db->prepare("SELECT Cart.price, name, product_id, Cart.id, Cart.quantity, Products.quantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
+    $stmt = $db->prepare("SELECT Cart.price, name, product_id, Cart.id, Cart.quantity, Products.quantity as pquantity From Cart JOIN Products on Cart.product_id = Products.id where Cart.user_id=:user_id LIMIT 10");
     $r = $stmt->execute([":user_id"=> $userID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -56,6 +62,9 @@ $db = getDB();
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
+                    <?php if ($r["pquantity"] < $r("quantity")) ?>
+                    <?php echo "Quantity too high" ?>
+            <?php endif; ?>
                     <input type="submit" name="save" value="Update Quantity"/>
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>
@@ -85,8 +94,8 @@ $db = getDB();
 <label>Payment Method</label>
             <select name="id" value="<?php echo $result["id"];?>" >
                 <option value="-1">None</option>
-                <?php foreach ($products as $product): ?>
-                    <option value="<?php safer_echo($result["payment_method"]); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                <?php foreach ($payments as $payment): ?>
+                    <option value="<?php safer_echo($payment); ?>" <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
                     ><?php safer_echo($product["name"]); ?></option>
                 <?php endforeach; ?>
             </select>
