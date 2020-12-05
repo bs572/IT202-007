@@ -8,5 +8,5 @@ CREATE TABLE IF NOT EXISTS `OrderItems`
     `unit_price` decimal(12, 2),
     PRIMARY KEY (`id`),
     FOREIGN KEY (`product_id`) REFERENCES Users(`id`),
-    FOREIGN KEY (`order_id`) REFERENCES Orders(`id`),
+    FOREIGN KEY (`order_id`) REFERENCES Orders(`id`)
 )
