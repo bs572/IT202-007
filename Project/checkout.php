@@ -18,6 +18,7 @@ $subtotal = 0;
 $payments = [];
 $paymentMethod ="";
 $address = "";
+$amountTendered;
 $noError = True;
 $query = "";
 
@@ -51,8 +52,9 @@ $db = getDB();
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
+        $amountTendered = $_POST["payment"];
         echo ("No Errors");
-        echo ("Subtotal:" . $subtotal . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
+        echo ("Subtotal:" . $subtotal . "Amount Tendered:" . $amountTendered . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
         
         
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
