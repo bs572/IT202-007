@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS `Orders` (
-	`id` int auto_increment,
+	`id` int auto_increment not null,
 	`user_id` int,
 	`total_price` decimal(12, 2),
     `payment_method` varchar(20),
