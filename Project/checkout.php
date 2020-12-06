@@ -44,6 +44,7 @@ $db = getDB();
 
     if (isset($_POST["save"])):
         echo("Submit successful");
+    endif;
 
     
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
