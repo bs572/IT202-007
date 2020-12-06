@@ -61,13 +61,13 @@ $db = getDB();
                     if ($index > 0) {
                         $query .= ",";
                     }
-                    $query .= "(:uid$index, :price$index, :pid$index, :oid, :quantity$index )";
+                    $query .= "(:userID, :price$index, :pid$index, :oid, :quantity$index )";
                     $params[":pid$index"] = $result["product_id"];
                     $params[":quantity$index"] = $result["quantity"];
                     $params[":price$index"] = $result["price"];
                    }
            $params[":oid"] = $db -> lastInsertID();
-           $params[":userID$index"] = $userID;
+           $params[":userID"] = $userID;
 
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
