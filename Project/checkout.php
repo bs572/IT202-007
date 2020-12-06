@@ -50,6 +50,7 @@ $db = getDB();
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
+        $subtotal = $_POST["subtotal"];
         echo ("No Errors");
         echo ("Subtotal:" . $subtotal . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
         
@@ -149,5 +150,6 @@ $db = getDB();
         <input type="text" name="streetLine2" value="Street Line 2"/>
         <input type="text" name="city" value="City"/>
         <input type="number" name="zipCode" value="Zip Code"/>
+        <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
         <input type="submit" name="save" value="Place Order"/>
 </form>
