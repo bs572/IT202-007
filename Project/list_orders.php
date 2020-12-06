@@ -36,9 +36,8 @@ $db = getDB();
                 <?php foreach ($results as $r): ?>
                     <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title"><?php safer_echo("Order"); ?></h5>
+                    <h5 class="card-title"><?php safer_echo($r["id"]); ?></h5>
                     </div>
-                    <div>Order Number: <?php safer_echo($r["id"]); ?></div>
                         <div>
                             <a type="button" href="view_order.php?id=<?php safer_echo($r['id']); ?>">View Order</a>
                         </div>
