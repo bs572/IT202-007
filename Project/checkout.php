@@ -48,10 +48,11 @@ $db = getDB();
 
     
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
-        $address = $_POST["streetLine1"];
+        $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
+        $paymentMethod = $_POST["payment_method"];
         echo ("No Errors");
         echo ($subtotal . $userID . $paymentMethod . $address);
-        $paymentMethod = $_POST["payment_method"];
+        
         
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
         $r = $stmt->execute([
@@ -133,7 +134,7 @@ $db = getDB();
                 <option value="-1">None</option>
                 <?php foreach ($payments as $payment): ?>
                     <option value="<?php safer_echo($payment["payment_method"]); ?>" 
-                    ><?php safer_echo($payment["payment_method"]); ?></option> <?php echo ($result["product_id"] == $product["id"] ? 'selected="selected"' : ''); ?>
+                    ><?php safer_echo($payment["payment_method"]); ?></option> <?php echo ($payment["payment_method"] == $product["id"] ? 'selected="selected"' : ''); ?>
                 <?php endforeach; ?>
             </select>
             <?php endif; ?>
