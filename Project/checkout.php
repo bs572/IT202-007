@@ -48,7 +48,7 @@ $db = getDB();
     endif;
 
     
-    if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
+    if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) {
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
@@ -82,7 +82,7 @@ $db = getDB();
 
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
-        endif;
+                }
 ?>
 
 
