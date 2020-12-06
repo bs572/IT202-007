@@ -48,10 +48,11 @@ $db = getDB();
 
     
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
+        $address = $_POST["streetLine1"];
         echo ("No Errors");
         echo ($subtotal . $userID . $paymentMethod . $address);
         $paymentMethod = $_POST["payment_method"];
-        $address = $_POST["streetLine1"];
+        
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
         $r = $stmt->execute([
         ":tprice" => $subtotal,
@@ -114,9 +115,6 @@ $db = getDB();
                     <input type="hidden" name="product_id" value="<?php echo $r["product_id"]; ?>"/>
                     <input type="hidden" name="id" value="<?php echo $r["id"]; ?>"/>        
                 </form>
-                    <div>
-                        <a type="button" href="user_view_product_cart.php?id=<?php safer_echo($r['product_id']); ?>">View Product</a>
-                    </div>
             
             <?php endforeach; ?>
            <div>    
