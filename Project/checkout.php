@@ -78,6 +78,7 @@ $db = getDB();
                     $params[":price$index"] = $result["price"];
                    }
            $params[":oid"] = $db->lastInsertID();
+           echo ($db->lastInsertID());
            $params[":userID"] = $userID;
 
         $stmt = $db->prepare($query);
