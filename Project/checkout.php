@@ -19,6 +19,7 @@ $payments = [];
 $paymentMethod ="";
 $address = "";
 $noError = True;
+$query = "";
 
 
 $db = getDB();
@@ -45,7 +46,7 @@ $db = getDB();
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
         $paymentMethod = $_POST["payment_method"];
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"];
-        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, id, `address`) VALUES (:userID, :tprice, :pmethod, :addr) on duplicate key update quantity = :quantity");
+        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr) on duplicate key update quantity = :quantity");
         $r = $stmt->execute([
         ":tprice" => $subtotal,
         ":userID" => $userID,
@@ -54,14 +55,22 @@ $db = getDB();
         ]);
 
 
+        $query = "INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, `order_id`, `quantity`) VALUES ";
+                $params = [];
+                foreach ($results as $index => $result) {
+                    if ($index > 0) {
+                        $query .= ",";
+                    }
+                    $query .= "(:uid$index, :price$index, :pid$index, :oid, :quantity$index )";
+                    $params[":pid$index"] = $result["product_id"];
+                    $params[":quantity$index"] = $result["quantity"];
+                    $params[":price$index"] = $result["price"];
+                   }
+           $params[":oid"] = $result["order_id"];
+           $params[":userID$index"] = $userID;
 
-        $stmt = $db->prepare("INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, id, ) VALUES (:userID, :uprice, :product_id, :quantity) on duplicate key update quantity = :quantity");
-        $r = $stmt->execute([
-        ":uprice" => $subtotal,
-        ":userID" => $userID,
-        ":pmethod" => $paymentMethod,
-        "quantity" => $quantity
-        ]);
+        $stmt = $db->prepare($query);
+        $r = $stmt->execute($params);
         endif;
 ?>
 
