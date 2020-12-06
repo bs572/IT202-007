@@ -124,6 +124,7 @@ $db = getDB();
 
 
 <label>Payment Method</label>
+        <form method="POST"> 
             <select name="payment_method" value="<?php echo $payment["payment_method"];?>" >
                 <option value="-1">None</option>
                 <?php foreach ($payments as $payment): ?>
@@ -132,6 +133,7 @@ $db = getDB();
                 <?php endforeach; ?>
             </select>
             <?php endif; ?>
+        </form>
 
 <form method="POST">
         <input type="number" name="payment" value=""/>
