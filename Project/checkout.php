@@ -18,7 +18,7 @@ $subtotal = 0;
 $payments = [];
 $paymentMethod ="";
 $address = "";
-$amountTendered;
+$amountTendered = 0;
 $noError = True;
 $query = "";
 
