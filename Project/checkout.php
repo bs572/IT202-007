@@ -46,7 +46,7 @@ $db = getDB();
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
         $paymentMethod = $_POST["payment_method"];
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"];
-        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr) on duplicate key update quantity = :quantity");
+        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
         $r = $stmt->execute([
         ":tprice" => $subtotal,
         ":userID" => $userID,
