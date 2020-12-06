@@ -142,5 +142,5 @@ $db = getDB();
         <input type="text" name="streetLine2" value="Street Line 2"/>
         <input type="text" name="city" value="City"/>
         <input type="number" name="zipCode" value="Zip Code"/>
-        <input type="submit" name="save" value="Address"/>
+        <input type="submit" name="save" value="Place Order"/>
 </form>
