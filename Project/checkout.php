@@ -59,12 +59,12 @@ $db = getDB();
         
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
         $r = $stmt->execute([
-        ":tprice" => $subtotal,
-        ":userID" => $userID,
-        ":pmethod" => $paymentMethod,
-        ":addr" => $address
+        ":tprice"=>$subtotal,
+        ":userID"=>$userID,
+        ":pmethod"=>$paymentMethod,
+        ":addr"=>$address
         ]);
-
+        echo var_export($stmt->errorInfo(), true);
 
         $query = "INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, `order_id`, `quantity`) VALUES ";
                 $params = [];
@@ -82,6 +82,7 @@ $db = getDB();
 
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
+        echo var_export($stmt->errorInfo(), true);
                 }
 ?>
 
