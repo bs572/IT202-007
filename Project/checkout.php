@@ -42,8 +42,12 @@ $db = getDB();
     }
 
 
+    if (isset($_POST["save"])):
+        echo("Submit successful");
 
+    
     if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) :
+        echo ("No Errors");
         $paymentMethod = $_POST["payment_method"];
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"];
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
