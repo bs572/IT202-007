@@ -58,7 +58,7 @@ $db = getDB();
         echo ("Subtotal:" . $subtotal . "Amount Tendered:" . $amountTendered . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
         
         
-        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
+        $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr)");
         $r = $stmt->execute([
         ":tprice"=>$subtotal,
         ":userID"=>$userID,
