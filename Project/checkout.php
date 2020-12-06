@@ -21,6 +21,7 @@ $address = "";
 $amountTendered = 0;
 $noError = True;
 $query = "";
+$orderID =0;
 
 
 $db = getDB();
@@ -64,6 +65,7 @@ $db = getDB();
         ":pmethod"=>$paymentMethod,
         ":addr"=>$address
         ]);
+        $orderID = $db->lastInsertId('id');
         echo var_export($stmt->errorInfo(), true);
 
         $query = "INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, `order_id`, `quantity`) VALUES ";
@@ -77,8 +79,8 @@ $db = getDB();
                     $params[":quantity$index"] = $result["quantity"];
                     $params[":price$index"] = $result["price"];
                    }
-           $params[":oid"] = $db->lastInsertId('id');
-           echo ($db->lastInsertId('id'));
+           $params[":oid"] = $orderID;
+           echo ($orderID);
            $params[":userID"] = $userID;
 
         $stmt = $db->prepare($query);
