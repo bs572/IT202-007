@@ -51,7 +51,7 @@ $db = getDB();
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         echo ("No Errors");
-        echo ($subtotal . $userID . $paymentMethod . $address);
+        echo ("Subtotal:" . $subtotal . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
         
         
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr");
