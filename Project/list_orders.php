@@ -18,7 +18,7 @@ $subtotal = 0;
 $address = "";
 
 $db = getDB();
-    $stmt = $db->prepare("SELECT payment_method, quantity, total_price, user_id, id `address`, payment_method  From Orders  where user_id=:user_id LIMIT 10");
+    $stmt = $db->prepare("SELECT payment_method, total_price, user_id, id `address`, payment_method  From Orders  where user_id=:user_id LIMIT 10");
     $r = $stmt->execute([":user_id"=> $userID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +37,6 @@ $db = getDB();
                     <div class="card" style="width: 18rem;">
                     <div class="card-body">
                     <h5 class="card-title"><?php safer_echo($r["name"]); ?></h5>
-                    <div><?php safer_echo($r["quantity"]); ?></div>
                     </div>
                     <div>Order Number: <?php safer_echo($r["id"]); ?></div>
                         <div>
