@@ -65,7 +65,7 @@ $db = getDB();
         ":pmethod"=>$paymentMethod,
         ":addr"=>$address
         ]);
-        $orderID = $db->lastInsertId('id');
+        $orderID = $db->lastInsertId();
         echo var_export($stmt->errorInfo(), true);
 
         $query = "INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, `order_id`, `quantity`) VALUES ";
