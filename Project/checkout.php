@@ -133,13 +133,13 @@ $db = getDB();
                 <?php endforeach; ?>
             </select>
             <?php endif; ?>
-        </form>
+        
 
-<form method="POST">
+
         <input type="number" name="payment" value=""/>
         <input type="submit" name="save" value="Payment"/>
-</form>
-<form method="POST">
+
+
         <input type="text" name="streetLine1" value="Street Line 1"/>
         <input type="text" name="streetLine2" value="Street Line 2"/>
         <input type="text" name="city" value="City"/>
