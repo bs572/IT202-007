@@ -48,7 +48,23 @@ $db = getDB();
     endif;
 
     
-    if ($noError && isset($_POST["streetLine1"]) && isset($_POST["streetLine2"]) && isset($_POST["city"]) && isset($_POST["zipCode"])) {
+   if (empty($_POST["streetLine1"])){
+       flash("There was a problem with Street Line 1");
+   } 
+
+   if (empty($_POST["streetLine2"])){
+    flash("There was a problem with Street Line 2");
+} 
+
+if (empty($_POST["city"])){
+    flash("There was a problem with City");
+} 
+
+if (empty($_POST["zipCode"])){
+    flash("There was a problem with Zip Code");
+} 
+    
+    if ($noError && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
