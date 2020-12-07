@@ -80,7 +80,7 @@ if (isset($_POST["zipCode"])){
 if (empty($_POST["zipCode"])){
     $noError = false;  
     flash("There was a problem with Zip Code");
-}n }
+} }
 
 
 
@@ -119,6 +119,7 @@ if(isset($_POST["quantity"])) {
         ":pmethod"=>$paymentMethod,
         ":addr"=>$address
         ]);
+        $db = getDB();
         $orderID = $db->lastInsertId();
 
         echo var_export($stmt->errorInfo(), true);
@@ -140,10 +141,10 @@ if(isset($_POST["quantity"])) {
 
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
+        echo var_export($stmt->errorInfo(), true);
         $db = getDB();
         $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
         $r = $stmt->execute([":userID"=> $userID,]);
-        echo var_export($stmt->errorInfo(), true);
         header("Location: view_order.php?id=" . safer_echo($orderID));
                 }
 ?>
