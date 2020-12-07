@@ -45,7 +45,6 @@ $db = getDB();
 
 
     if (isset($_POST["save"])):
-        echo("Submit successful");
     endif;
 
     
@@ -54,8 +53,7 @@ $db = getDB();
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
         $amountTendered = $_POST["payment"];
-        echo ("No Errors");
-        echo ("Subtotal:" . $subtotal . "Amount Tendered:" . $amountTendered . "user ID:" .$userID . "PaymentMethod: " . $paymentMethod . "Address:" . $address);
+
         
         
         $stmt = $db->prepare("INSERT into Orders (`user_id`, `total_price`, `payment_method`, `address`) VALUES (:userID, :tprice, :pmethod, :addr)");
@@ -106,7 +104,7 @@ $db = getDB();
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <?php if ($r["pquantity"] < $r["quantity"]): ?>
-                    <?php echo "Quantity too high";
+                    <?php flash("Error creating answers: " . var_export($stmt->errorInfo(), true), "danger");
                     $noError = False; 
                     endif; ?>
                      <?php if ($r["pquantity"] > $r["quantity"]): ?>
@@ -152,10 +150,10 @@ $db = getDB();
         <input type="submit" name="save" value="Payment"/>
 
 
-        <input type="text" name="streetLine1" value="Street Line 1"/>
-        <input type="text" name="streetLine2" value="Street Line 2"/>
-        <input type="text" name="city" value="City"/>
-        <input type="number" name="zipCode" value="Zip Code"/>
+        <input type="text" name="streetLine1" placeholder="Street Line 1"/>
+        <input type="text" name="streetLine2" placeholder="Street Line 2"/>
+        <input type="text" name="city" placeholder="City"/>
+        <input type="number" name="zipCode" placeholder="Zip Code"/>
         <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
         <input type="submit" name="save" value="Place Order"/>
 </form>
