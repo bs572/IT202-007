@@ -25,7 +25,7 @@ if (isset($_POST["query"])) {
 <?php   
     $db = getDB();
     $stmt = $db->prepare("SELECT id, product_id, unit_price, quantity From OrderItems Where order_id=:order_id LIMIT 10");
-    $r = $stmt->execute([":user_id"=> $userID,]);
+    $r = $stmt->execute([":order_id"=> $userID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
