@@ -83,7 +83,11 @@ if (empty($_POST["zipCode"])){
         ":pmethod"=>$paymentMethod,
         ":addr"=>$address
         ]);
+        $db = getDB();
+        $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
+        $r = $stmt->execute([":userID"=> $userID,]);
         $orderID = $db->lastInsertId();
+
         echo var_export($stmt->errorInfo(), true);
 
         $query = "INSERT into OrderItems (`user_id`, `unit_price`, `product_id`, `order_id`, `quantity`) VALUES ";
@@ -104,6 +108,7 @@ if (empty($_POST["zipCode"])){
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
         echo var_export($stmt->errorInfo(), true);
+        header("Location: view_order.php?id=" . safer_echo($orderID));
                 }
 ?>
 
