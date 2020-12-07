@@ -42,11 +42,6 @@ $db = getDB();
     else {
         flash("There was a problem fetching the results " . var_export($stmt->errorInfo(), true));
     }
-
-
-    if (isset($_POST["save"])):
-    endif;
-
     
     if (isset($_POST["payment"])){
     if ($_POST["payment"] < $subtotal) {
@@ -200,7 +195,7 @@ if(isset($_POST["quantity"])) {
 
 
         <input type="number" name="payment" value=""/>
-        <input type="submit" name="save" value="Payment"/>
+        <input type="submit" name="payment" value="Payment"/>
 
 
         <input type="text" name="streetLine1" placeholder="Street Line 1"/>
