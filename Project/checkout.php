@@ -91,7 +91,7 @@ if(isset($_POST["quantity"])) {
 }
 }
     
-    if ($noError && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
+    if ($noError == True && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
@@ -151,7 +151,7 @@ if(isset($_POST["quantity"])) {
                 <div class="form-group">
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
-                    <?php if ($r["pquantity"] < $r["quantity"]): ?>
+                    <?php if ($r["pquantity"] < $r["quantity"]) : ?>
                     <?php flash("Quantity too high, please enter a lower quantity");
                     $noError = False; 
                     endif; ?>
