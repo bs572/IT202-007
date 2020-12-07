@@ -49,31 +49,36 @@ $db = getDB();
         flash("Amount Tendered Lower than subtotal");
        }   }
     
-    if (empty($_POST["streetLine1"])){
+       if (isset($_POST["streetLine1"])){
+       if (empty($_POST["streetLine1"])){
     $noError = false;   
     flash("There was a problem with Street Line 1");
-   } 
+   } }
 
+   if (isset($_POST["steetLine2"])){
    if (empty($_POST["streetLine2"])){
     $noError = false;  
     flash("There was a problem with Street Line 2");
-} 
+} }
 
+if (isset($_POST["state"])){
 if (empty($_POST["state"])){
     $noError = false;  
     flash("There was a problem with State");
-} 
+} }
 
 
+if (isset($_POST["city"])){
 if (empty($_POST["city"])){
     $noError = false;  
     flash("There was a problem with City");
-} 
+} }
 
+if (isset($_POST["zipCode"])){
 if (empty($_POST["zipCode"])){
     $noError = false;  
     flash("There was a problem with Zip Code");
-} 
+} }
 
 
 
