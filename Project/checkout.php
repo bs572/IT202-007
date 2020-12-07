@@ -48,7 +48,9 @@ $db = getDB();
         $noError = false;   
         flash("Amount Tendered Lower than subtotal");
        }   }
-    
+
+
+
        if (isset($_POST["streetLine1"])){
        if (empty($_POST["streetLine1"])){
     $noError = false;   
@@ -78,7 +80,7 @@ if (isset($_POST["zipCode"])){
 if (empty($_POST["zipCode"])){
     $noError = false;  
     flash("There was a problem with Zip Code");
-} }
+}n }
 
 
 
@@ -117,9 +119,6 @@ if(isset($_POST["quantity"])) {
         ":pmethod"=>$paymentMethod,
         ":addr"=>$address
         ]);
-        $db = getDB();
-        $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
-        $r = $stmt->execute([":userID"=> $userID,]);
         $orderID = $db->lastInsertId();
 
         echo var_export($stmt->errorInfo(), true);
@@ -141,6 +140,9 @@ if(isset($_POST["quantity"])) {
 
         $stmt = $db->prepare($query);
         $r = $stmt->execute($params);
+        $db = getDB();
+        $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
+        $r = $stmt->execute([":userID"=> $userID,]);
         echo var_export($stmt->errorInfo(), true);
         header("Location: view_order.php?id=" . safer_echo($orderID));
                 }
