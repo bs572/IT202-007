@@ -172,6 +172,7 @@ if (empty($_POST["zipCode"])){
 
         <input type="text" name="streetLine1" placeholder="Street Line 1"/>
         <input type="text" name="streetLine2" placeholder="Street Line 2"/>
+        <input type="text" name="state" placeholder="State"/>
         <input type="text" name="city" placeholder="City"/>
         <input type="number" name="zipCode" placeholder="Zip Code"/>
         <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
