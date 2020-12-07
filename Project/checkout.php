@@ -49,18 +49,22 @@ $db = getDB();
 
     
    if (empty($_POST["streetLine1"])){
-       flash("There was a problem with Street Line 1");
+    $noError = false;   
+    flash("There was a problem with Street Line 1");
    } 
 
    if (empty($_POST["streetLine2"])){
+    $noError = false;  
     flash("There was a problem with Street Line 2");
 } 
 
 if (empty($_POST["city"])){
+    $noError = false;  
     flash("There was a problem with City");
 } 
 
 if (empty($_POST["zipCode"])){
+    $noError = false;  
     flash("There was a problem with Zip Code");
 } 
     
