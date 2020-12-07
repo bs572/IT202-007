@@ -59,6 +59,12 @@ $db = getDB();
     flash("There was a problem with Street Line 2");
 } 
 
+if (empty($_POST["state"])){
+    $noError = false;  
+    flash("There was a problem with Street Line 2");
+} 
+
+
 if (empty($_POST["city"])){
     $noError = false;  
     flash("There was a problem with City");
@@ -145,7 +151,6 @@ if(isset($_POST["quantity"])) {
                 <div class="card-body">
                 <h5 class="card-title"><?php safer_echo($r["name"]); ?></h5>
                 <div>Price: <?php safer_echo(($r["price"]* $r["quantity"])); ?></div>
-                <div><?php safer_echo($r["quantity"]); ?></div>
                 </div>
                 <form method="POST">
                 <div class="form-group">
