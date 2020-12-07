@@ -61,7 +61,7 @@ $db = getDB();
 
 if (empty($_POST["state"])){
     $noError = false;  
-    flash("There was a problem with Street Line 2");
+    flash("There was a problem with State");
 } 
 
 
