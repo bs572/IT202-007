@@ -177,3 +177,4 @@ if (empty($_POST["zipCode"])){
         <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
         <input type="submit" name="save" value="Place Order"/>
 </form>
+<?php require(__DIR__ . "/partials/flash.php"); ?>
