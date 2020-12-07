@@ -36,10 +36,6 @@ $results = [];
 <div class="results">
     <?php if (count($results) > 0): ?>
             <?php foreach ($results as $r): ?>
-                <?php
-                echo ($r["order_id"]);
-                echo ($r["name"]);
-                echo ($r["quantity"]); ?>
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
                 <h5 class="card-title">Item: <?php safer_echo($r["name"]); ?></h5>
