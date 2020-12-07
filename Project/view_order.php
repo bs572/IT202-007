@@ -17,14 +17,10 @@ if (isset($_GET["id"])) {
 <?php
 $results = [];
 
-if (isset($_POST["query"])) {
-    $query = $_POST["query"];
-}
-
 ?>
 <?php   
     $db = getDB();
-    $stmt = $db->prepare("SELECT OrderItems.id, order_id, product_id, unit_price, OrderItems.quantity, name From OrderItems JOIN Products Where order_id=:order_id LIMIT 10");
+    $stmt = $db->prepare("SELECT OrderItems.id, order_id, product_id, unit_price, OrderItems.quantity, Products.name From OrderItems JOIN Products Where order_id=:order_id LIMIT 10");
     $r = $stmt->execute([":order_id"=> $orderID,]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
