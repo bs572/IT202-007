@@ -55,4 +55,4 @@ $db = getDB();
                 </form>
 
                 <?php endif; ?>
-                <?php require(__DIR__ . "/partials/flash.php");
+                <?php require(__DIR__ . "/../../partials/flash.php");
