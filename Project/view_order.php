@@ -42,7 +42,7 @@ if (isset($_POST["query"])) {
             <?php foreach ($results as $r): ?>
                 <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                <h5 class="card-title"><?php safer_echo("Item:" . $r["name"]); ?></h5>
+                <h5 class="card-title">Item: <?php safer_echo($r["name"]); ?></h5>
                 <div>Price: <?php safer_echo($r["unit_price"]); ?></div>
                 <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
                 </div>
