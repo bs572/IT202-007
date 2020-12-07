@@ -48,7 +48,12 @@ $db = getDB();
     endif;
 
     
-   if (empty($_POST["streetLine1"])){
+    if ($_POST["payment"] < $subtotal) {
+        $noError = false;   
+        flash("Amount Tendered Lower than subtotal");
+       }   
+    
+    if (empty($_POST["streetLine1"])){
     $noError = false;   
     flash("There was a problem with Street Line 1");
    } 
@@ -67,6 +72,28 @@ if (empty($_POST["zipCode"])){
     $noError = false;  
     flash("There was a problem with Zip Code");
 } 
+
+
+
+if(isset($_POST["quantity"])) {
+    $quantity = (int)$_POST["quantity"];
+    if($quantity == 0) {
+        $cartID = $_POST["id"];
+        $db = getDB();
+        $stmt = $db->prepare("DELETE From Cart where id = :cartID");
+        $r = $stmt->execute([":cartID"=> $cartID,]);
+    }
+    if ($quantity != 0 ) {
+        $productID = $_POST["product_id"];
+        $db = getDB();
+        $stmt = $db->prepare("INSERT into Cart (`product_id`, `user_id`, `quantity`) VALUES (:productID, :userID, :quantity) on duplicate key update quantity = :quantity");
+        $r = $stmt->execute([
+            ":productID" => $productID,
+            ":userID" => $userID,
+            ":quantity" => $quantity
+            ]);
+}
+}
     
     if ($noError && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
@@ -129,7 +156,7 @@ if (empty($_POST["zipCode"])){
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <?php if ($r["pquantity"] < $r["quantity"]): ?>
-                    <?php flash("Error creating answers: " . var_export($stmt->errorInfo(), true), "danger");
+                    <?php flash("Quantity too high, please enter a lower quantity");
                     $noError = False; 
                     endif; ?>
                      <?php if ($r["pquantity"] > $r["quantity"]): ?>
