@@ -48,10 +48,11 @@ $db = getDB();
     endif;
 
     
+    if (isset($_POST["payment"])){
     if ($_POST["payment"] < $subtotal) {
         $noError = false;   
         flash("Amount Tendered Lower than subtotal");
-       }   
+       }   }
     
     if (empty($_POST["streetLine1"])){
     $noError = false;   
