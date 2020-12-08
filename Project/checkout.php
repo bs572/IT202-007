@@ -165,7 +165,7 @@ if(isset($_POST["quantity"])) {
                     <label>Quantity</label>
                     <input type="number" min="0" name="quantity" value="<?php echo $r["quantity"]; ?>"/>
                     <?php if ($r["pquantity"] < $r["quantity"]) : ?>
-                    <?php flash("Quantity too high, please enter a lower quantity");
+                    <?php flash("Quantity of " . $r["name"] . " too high, please enter a lower quantity");
                     $noError = False; 
                     endif; ?>
                      <?php if ($r["pquantity"] > $r["quantity"]): ?>
