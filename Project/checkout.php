@@ -45,6 +45,7 @@ $db = getDB();
     
     if (isset($_POST["payment"])){
         if (empty($_POST["payment"])){
+            flash("Please Select a payment method");
             flash("Please enter a payment value higher than your subtotal");
             $noError = false;
         }
