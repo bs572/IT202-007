@@ -44,8 +44,8 @@ $db = getDB();
     }
     
     if (isset($_POST["payment"])){
+        $subtotal = $_POST["subtotal"];
         if (empty($_POST["payment"])){
-            flash("Please Select a payment method");
             flash("Please enter a payment value higher than your subtotal");
             $noError = false;
         }
@@ -65,7 +65,7 @@ $db = getDB();
    if (isset($_POST["payment_method"])){
     if ($_POST["payment_method"] == "-1"){
     $noError = false;   
-    flash("There was a problem with Street Line 1");
+    flash("Please Select a Payment Method");
    } }  
 
    if (isset($_POST["steetLine2"])){
