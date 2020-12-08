@@ -44,23 +44,32 @@ $db = getDB();
     }
     
     if (isset($_POST["payment"])){
-    if ($_POST["payment"] < $subtotal) {
+        if (empty($_POST["payment"])){
+            flash("Please enter a payment method higher than your subtotal");
+        }
+        if ($_POST["payment"] < $subtotal) {
         $noError = false;   
         flash("Amount Tendered Lower than subtotal");
        }   }
 
 
 
-       if (isset($_POST["streetLine1"])){
-       if (empty($_POST["streetLine1"])){
+    if (isset($_POST["streetLine1"])){
+    if (empty($_POST["streetLine1"])){
     $noError = false;   
     flash("There was a problem with Street Line 1");
    } }
 
+   if (isset($_POST["payment_method"])){
+    if ($_POST["payment_method"] == "-1"){
+    $noError = false;   
+    flash("There was a problem with Street Line 1");
+   } }  
+
    if (isset($_POST["steetLine2"])){
    if (empty($_POST["streetLine2"])){
     $noError = false;  
-    flash("There was a problem with Street Line 2");
+    flash("Please Enter a Payment Method");
 } }
 
 if (isset($_POST["state"])){
