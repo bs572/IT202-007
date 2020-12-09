@@ -23,6 +23,7 @@ $amountTendered = 0;
 $noError = True;
 $query = "";
 $orderID =0;
+$redirect = "";
 
 
 $db = getDB();
@@ -127,10 +128,10 @@ if(isset($_POST["quantity"])) {
 }
 }
     
-    if ($noError == True && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
+    if ($noError == True && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["state"]) && !empty($_POST["zipCode"])) {
         $quantity = $_POST["cquantity"]; 
         $pquantity = $_POST["pquantity"];
-        $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
+        $address = $_POST["streetLine1"] . " " . $_POST["streetLine2"] . " " . $_POST["city"] . " " . $_POST["state"] . " " . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
         $amountTendered = $_POST["payment"];
@@ -178,8 +179,9 @@ if(isset($_POST["quantity"])) {
             ":productID"=>$result["product_id"]
         ]);  }
         echo var_export($stmt->errorInfo(), true);
-        
-        header("Location: view_order.php?id=" . safer_echo($orderID));
+        $redirect = "Location: view_order.php?id=";
+        $redirect .= safer_echo($orderID);
+        header($redirect);
                 }
 ?>
 
