@@ -149,8 +149,7 @@ if(isset($_POST["quantity"])) {
         ]);
         $db = getDB();
         $orderID = $db->lastInsertId();
-        $backupOrderID = $db->lastInsertId();
-
+        $backupOrderID = $orderID;
 
         echo var_export($stmt->errorInfo(), true);
 
