@@ -24,6 +24,7 @@ $noError = True;
 $query = "";
 $orderID =0;
 $redirect = "";
+$backupOrderID = 0;
 
 
 $db = getDB();
@@ -148,6 +149,8 @@ if(isset($_POST["quantity"])) {
         ]);
         $db = getDB();
         $orderID = $db->lastInsertId();
+        $backupOrderID = $db->lastInsertId();
+
 
         echo var_export($stmt->errorInfo(), true);
 
@@ -179,9 +182,8 @@ if(isset($_POST["quantity"])) {
             ":productID"=>$result["product_id"]
         ]);  }
         echo var_export($stmt->errorInfo(), true);
-        $orderID = $db->lastInsertId();
         $redirect = "Location: view_order.php?id=";
-        $redirect .= safer_echo($orderID);
+        $redirect .= safer_echo($backupOrderID);
         header($redirect);
                 }
 ?>
