@@ -179,6 +179,7 @@ if(isset($_POST["quantity"])) {
             ":productID"=>$result["product_id"]
         ]);  }
         echo var_export($stmt->errorInfo(), true);
+        $orderID = $db->lastInsertId();
         $redirect = "Location: view_order.php?id=";
         $redirect .= safer_echo($orderID);
         header($redirect);
@@ -249,8 +250,8 @@ if(isset($_POST["quantity"])) {
 
         <input type="text" name="streetLine1" placeholder="Street Line 1"/>
         <input type="text" name="streetLine2" placeholder="Street Line 2"/>
-        <input type="text" name="state" placeholder="State"/>
         <input type="text" name="city" placeholder="City"/>
+        <input type="text" name="state" placeholder="State"/>
         <input type="number" name="zipCode" placeholder="Zip Code"/>
         <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
         <input type="hidden" name="cquantity" value="<?php echo $r["quantity"]; ?>"/>
