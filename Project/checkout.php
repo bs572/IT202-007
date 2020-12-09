@@ -96,7 +96,7 @@ if (empty($_POST["zipCode"])){
 
 
 if(isset($_POST["quantity"]) && isset ($_POST["pquantity"])) {
-    $_POST["quantity"] = $quantity;
+    $_POST["cquantity"] = $quantity;
     $_POST["pquantity"] = $pquantity;
     if ($quantity > $pquantity) {
         flash ("One of Your Items has too high a quantity");
