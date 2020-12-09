@@ -14,6 +14,7 @@ $cartID = 0;
 $productID = 0;
 $results = [];
 $quantity = 0;
+$pquantity = 0;
 $subtotal = 0;
 $payments = [];
 $paymentMethod ="";
@@ -94,6 +95,17 @@ if (empty($_POST["zipCode"])){
 } }
 
 
+if(isset($_POST["quantity"]) && isset ($_POST["pquantity"])) {
+    $_POST["quantity"] = $quantity;
+    $_POST["pquantity"] = $pquantity;
+    if ($quantity < $pquantity) {
+        flash ("One of Your Items has too high a quantity");
+        $noError = false;
+    }
+
+
+}
+
 
 if(isset($_POST["quantity"])) {
     $quantity = (int)$_POST["quantity"];
@@ -120,6 +132,7 @@ if(isset($_POST["quantity"])) {
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
         $amountTendered = $_POST["payment"];
+        $newQuantity = $pquantity - $quantity;
 
         
         
@@ -147,7 +160,6 @@ if(isset($_POST["quantity"])) {
                     $params[":price$index"] = $result["price"];
                    }
            $params[":oid"] = $orderID;
-           echo ($orderID);
            $params[":userID"] = $userID;
 
         $stmt = $db->prepare($query);
@@ -156,6 +168,17 @@ if(isset($_POST["quantity"])) {
         $db = getDB();
         $stmt = $db->prepare("DELETE from Cart where user_id = :userID");
         $r = $stmt->execute([":userID"=> $userID,]);
+        $db = getDB();
+        foreach ($results as $index => $result) {
+        $stmt = $db->prepare("UPDATE Products SET quantity = :newQuantity WHERE id = :productID");
+        $r = $stmt->execute([
+            ":newQuantity"=>$newQuantity,
+            ":productID"=>$result["product_id"]
+        ]);  }
+
+$stmt = $db->prepare($query);
+$r = $stmt->execute($params);
+        
         header("Location: view_order.php?id=" . safer_echo($orderID));
                 }
 ?>
@@ -228,6 +251,8 @@ if(isset($_POST["quantity"])) {
         <input type="text" name="city" placeholder="City"/>
         <input type="number" name="zipCode" placeholder="Zip Code"/>
         <input type="hidden" name="subtotal" value="<?php echo $subtotal; ?>"/>
+        <input type="hidden" name="cquantity" value="<?php echo $r["quantity"]; ?>"/>
+        <input type="hidden" name="pquantity" value="<?php echo $r["pquantity"]; ?>"/>
         <input type="submit" name="save" value="Place Order"/>
 </form>
 <?php require(__DIR__ . "/partials/flash.php"); ?>
