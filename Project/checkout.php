@@ -182,7 +182,7 @@ if(isset($_POST["quantity"])) {
         ]);  }
         echo var_export($stmt->errorInfo(), true);
         $redirect = "Location: view_order.php?id=";
-        $redirect .= safer_echo($backupOrderID);
+        $redirect .= $backupOrderID;
         header($redirect);
                 }
 ?>
