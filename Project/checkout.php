@@ -95,9 +95,9 @@ if (empty($_POST["zipCode"])){
 } }
 
 
-if(isset($_POST["quantity"]) && isset ($_POST["pquantity"])) {
-    $_POST["cquantity"] = $quantity;
-    $_POST["pquantity"] = $pquantity;
+if(isset($_POST["cquantity"]) && isset ($_POST["pquantity"])) {
+    $quantity = $_POST["cquantity"]; 
+    $pquantity = $_POST["pquantity"];
     if ($quantity > $pquantity) {
         flash ("One of Your Items has too high a quantity");
         $noError = false;
@@ -128,7 +128,8 @@ if(isset($_POST["quantity"])) {
 }
     
     if ($noError == True && !empty($_POST["streetLine1"]) && !empty($_POST["streetLine2"]) && !empty($_POST["city"]) && !empty($_POST["zipCode"])) {
-        echo "Product Quantity : " . $pquantity . " Cart Quantity:" . $quantity;
+        $quantity = $_POST["cquantity"]; 
+        $pquantity = $_POST["pquantity"];
         $address = $_POST["streetLine1"] . $_POST["streetLine2"] . $_POST["city"] . $_POST["zipCode"] ;
         $paymentMethod = $_POST["payment_method"];
         $subtotal = $_POST["subtotal"];
