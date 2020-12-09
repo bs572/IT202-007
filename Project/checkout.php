@@ -175,9 +175,7 @@ if(isset($_POST["quantity"])) {
             ":newQuantity"=>$newQuantity,
             ":productID"=>$result["product_id"]
         ]);  }
-
-$stmt = $db->prepare($query);
-$r = $stmt->execute($params);
+        echo var_export($stmt->errorInfo(), true);
         
         header("Location: view_order.php?id=" . safer_echo($orderID));
                 }
