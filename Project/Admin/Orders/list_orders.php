@@ -44,14 +44,16 @@ $db = getDB();
                             <a type="button" href="view_order.php?id=<?php safer_echo($r['id']); ?>">View Order</a>
                         </div>
                        <?php $cumulativeTotal += $r["total_price"]; ?>
+                       <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                    <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
+            </div> </div> 
+               
                 <?php endforeach; ?>
                
             </div>
-            <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
-            </div> </div> </div>
-            <?php echo $cumulativeTotal ?>
+            </div>
+            <?php echo "Total of All Orders: " . $cumulativeTotal ?>
             <form method="POST">
                 <div class="form-group">
                 <input type="submit" name="clearAll" value="Empty Cart"/>
