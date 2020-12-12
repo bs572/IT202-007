@@ -8,13 +8,18 @@ if (!has_role("Admin")) {
 ?>
 <?php
 $query = "";
+$dbQuery = "";
 $results = [];
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
+    $dbQuery = "SELECT name, id, price, quantity, description, user_id from Products WHERE name like :q";
+    $dbQuery .= "AND quantity < ";
+    $dbQuery .= $_POST["quantityFilter"];
+    $dbQuery .= " LIMIT 10";
     $db = getDB();
-    $stmt = $db->prepare("SELECT name, id, price, quantity, description, user_id from Products WHERE name like :q LIMIT 10");
+    $stmt = $db->prepare($dbQuery);
     $r = $stmt->execute([":q" => "%$query%"]);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -28,6 +33,7 @@ if (isset($_POST["search"]) && !empty($query)) {
 <form method="POST">
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
+        <input name="quantityFilter" placeholder="Max Quantity in Stock"/>
         <input type="submit" value="Search" name="search"/>
     </div>
 </form>
