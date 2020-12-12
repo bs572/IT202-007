@@ -66,8 +66,14 @@ if (isset($_POST["saved"])) {
     if ($isValid) {
         $userID = null;
         $currentPass = null;
-        $stmt = $db->prepare("UPDATE Users set email = :email, username= :username where id = :id");
-        $r = $stmt->execute([":email" => $newEmail, ":username" => $newUsername, ":id" => get_user_id()]);
+        $stmt = $db->prepare("UPDATE Users set email = :email, username = :username, visibility = :visibility, where id = :id");
+        $r = $stmt->execute([
+            ":email"=>$newEmail,
+            ":username"=>$newUsername,
+            ":visibility"=>$newVisibility, 
+            ":id" => get_user_id()
+            
+            ]);
         if ($r) {
             flash("Updated profile");
         }
@@ -146,7 +152,12 @@ if (isset($_POST["saved"])) {
     <div class="form-group">
         <label for="cpw">Confirm Password</label>
         <input type="password" name="confirm"/>
-    </div>    
+    </div>
+    <div class="form-group">
+    <label for="visibility">Public Profile</label>
+    <input type="hidden" name="visibility" value="0" />
+    <input type="checkbox" name="subcheck" value="1" /> 
+    </div>        
         <input type="submit" name="saved" value="Save Profile"/>
     </form>
 <?php require(__DIR__ . "/partials/flash.php");
