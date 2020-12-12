@@ -79,6 +79,7 @@ if (isset($_POST["saved"])) {
             flash("Updated profile");
         }
         else {
+            echo var_export($stmt->errorInfo(), true);
             flash("Error updating profile");
         }
         //password is optional, so check if it's even set
