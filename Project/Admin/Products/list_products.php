@@ -15,8 +15,11 @@ if (isset($_POST["query"])) {
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $dbQuery = "SELECT name, id, price, quantity, description, user_id from Products WHERE name like :q";
+    if (!empty ($_POST["quantityFilter"]))
+    {
     $dbQuery .= " AND quantity <= ";
     $dbQuery .= $_POST["quantityFilter"];
+    }
     $dbQuery .= " LIMIT 10";
     $db = getDB();
     $stmt = $db->prepare($dbQuery);
