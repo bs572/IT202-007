@@ -41,6 +41,7 @@ $results = [];
                 <h5 class="card-title">Item: <?php safer_echo($r["name"]); ?></h5>
                 <div>Price: <?php safer_echo($r["unit_price"]); ?></div>
                 <div>Quantity: <?php safer_echo($r["quantity"]); ?></div>
+                <input name="comment" placeholder="Search" value="test"/>
                 </div>
             <?php endforeach; ?>
                 </div>
