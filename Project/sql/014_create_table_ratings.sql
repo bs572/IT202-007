@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS `Ratings` (
    comment varchar(1000),
    created    datetime       default current_timestamp,
     modified   datetime       default current_timestamp on update current_timestamp,
-    UNIQUE KEY (product_id, user_id)
+    UNIQUE KEY (id)
 ) 
