@@ -16,6 +16,7 @@ $productID = 0;
 $results = [];
 $quantity = 0;
 $subtotal = 0;
+$cumulativeTotal = 0;
 $address = "";
 
 $db = getDB();
@@ -42,6 +43,7 @@ $db = getDB();
                         <div>
                             <a type="button" href="view_order.php?id=<?php safer_echo($r['id']); ?>">View Order</a>
                         </div>
+                       <?php $cumulativeTotal += $r["total_price"]; ?>
                 <?php endforeach; ?>
                
             </div>
@@ -49,6 +51,7 @@ $db = getDB();
                     <div class="card-body">
                     <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
             </div> </div> </div>
+            <?php echo $cumulativeTotal ?>
             <form method="POST">
                 <div class="form-group">
                 <input type="submit" name="clearAll" value="Empty Cart"/>
