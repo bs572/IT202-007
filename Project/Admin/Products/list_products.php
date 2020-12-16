@@ -44,18 +44,18 @@ if (isset($_POST["search"]) && !empty($query)) {
     if (isset ($_POST["category"])) {
         $dataQuery .= " AND category :=cat";
         $pageQuery .= " AND category :=cat";
-        $params["cat"] = $category;
+        $params[":cat"] = $category;
     }
     if (isset ($_POST["query"])) {
         $dataQuery .= " AND name like :q";
         $pageQuery .= " AND name lke :q";
-        $params["query"] = "%$query%";
+        $params[":query"] = "%$query%";
     }
     if (!empty ($_POST["quantityFilter"]))
     {
     $dataQuery .= " AND quantity <= :quantity ";
     $pageQuery .= " AND quantity <= :quantity ";
-    $params["quantity"] = $_POST["quantityFilter"];
+    $params[":quantity"] = $_POST["quantityFilter"];
     }
 
     if (isset ($sort) && isset($order)){
