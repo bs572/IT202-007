@@ -121,9 +121,9 @@ if (isset($_POST["search"]) && !empty($query)) {
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input name="quantityFilter" placeholder="Max Quantity in Stock"/>
-        <input name ="order" label="Ascending" type=radio value="ASC"/>
+        <input name ="order" label="Ascending" type=radio value="asc"/>
         <label for="ASC">Ascending</label>
-        <input name ="order" label="Descending" type=radio value="DESC"/>
+        <input name ="order" label="Descending" type=radio value="asc"/>
         <label for="DESC">Descending</label>
         <input name ="sort"  type=radio value="price"/>
         <label for="price">Price</label>
