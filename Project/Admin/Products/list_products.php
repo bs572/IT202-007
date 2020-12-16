@@ -47,7 +47,7 @@ if (isset($_POST["search"]) && !empty($query)) {
         $pageQuery .= " AND category =:cat";
         $params[":cat"] = $category;
     }
-    if (isset ($_POST["query"]) && !empty ($_POST["query"])) {
+    if (isset ($_POST["query"]) && ($_POST["query"])!= "" ) {
         $dataQuery .= " AND name like :q";
         $pageQuery .= " AND name like :q";
         $params[":q"] = "%$query%";
