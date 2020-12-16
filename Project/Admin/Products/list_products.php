@@ -68,8 +68,6 @@ if (isset($_POST["search"]) && !empty($query)) {
     $dataQuery .= " LIMIT :offset, :count";
     $total_pages = ceil($total / $countOnPage);
     $offset = ($page-1) * $countOnPage;
-    $params[":offset"] = $offset;
-    $params[":count"] = $countOnPage;
     
 
     $db = getDB();
