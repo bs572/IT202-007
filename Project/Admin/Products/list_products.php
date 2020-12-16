@@ -30,14 +30,14 @@ if(isset($_GET["page"])){
     catch(Exception $e){
 
     }
-
+}
 
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
     $dataQuery = "SELECT name, id, price, quantity, description, user_id from Products WHERE 1=1";
-    $pageQuery = "SELECT COUNT (*) as total from Products WHERE 1=1"; 
+    $pageQuery = "SELECT COUNT (*) as total from Products WHERE 1=1";  }
     
     if (isset ($_POST["category"])) {
         $dataQuery .= " AND category :=cat";
@@ -92,6 +92,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 
 ?>
+
 <h3>List Products</h3>
 <form method="POST">
     <div class="form-group">    
@@ -132,4 +133,4 @@ if (isset($_POST["search"]) && !empty($query)) {
         <p>No results</p>
     <?php endif; ?>
 </div>
-<?php require(__DIR__ . "/../../partials/flash.php");
+<?php require(__DIR__ . "/../../partials/flash.php"); ?>
