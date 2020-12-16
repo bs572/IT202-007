@@ -123,7 +123,7 @@ if (isset($_POST["search"]) && !empty($query)) {
         <input name="quantityFilter" placeholder="Max Quantity in Stock"/>
         <input name ="order" label="Ascending" type=radio value="asc"/>
         <label for="ASC">Ascending</label>
-        <input name ="order" label="Descending" type=radio value="asc"/>
+        <input name ="order" label="Descending" type=radio value="desc"/>
         <label for="DESC">Descending</label>
         <input name ="sort"  type=radio value="price"/>
         <label for="price">Price</label>
