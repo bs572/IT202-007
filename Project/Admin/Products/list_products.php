@@ -99,8 +99,8 @@ if (isset($_POST["search"]) && !empty($query)) {
             $stmt->bindValue($key,$val);
         }
     }
-    echo $dataQuery;
-    echo $params;
+    flash ($dataQuery);
+    flash ($params);
     /* $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
     $stmt->bindValue(":count",$countOnPage,PDO::PARAM_INT);
     $stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT); */
