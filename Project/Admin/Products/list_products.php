@@ -72,6 +72,18 @@ if (isset($_POST["search"]) && !empty($query)) {
     
 
     $db = getDB();
+    $stmt = $db->prepare("SELECT distinct category from Products;");
+    $r = $stmt->execute();
+    if ($r) {
+        $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    else {
+        flash("There was a problem fetching the results");
+    }
+   
+   
+   
+    $db = getDB();
     $stmt = $db->prepare($pageQuery);
     $stmt->execute($params);
     $params[":offset"] = $offset;
@@ -121,6 +133,13 @@ if (isset($_POST["search"]) && !empty($query)) {
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <input name="quantityFilter" placeholder="Max Quantity in Stock"/>
+        <select name="category" value="<?php echo $result["category"];?>" >
+            <option value="-1">None</option>
+            <?php foreach ($cats as $cat): ?>
+                <option value="<?php safer_echo($cat["category"]); ?>"
+                ><?php safer_echo($cat["category"]); ?></option>
+            <?php endforeach; ?>
+        </select>
         <input name ="order" label="Ascending" type=radio value="asc"/>
         <label for="ASC">Ascending</label>
         <input name ="order" label="Descending" type=radio value="desc"/>
