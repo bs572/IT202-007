@@ -9,6 +9,7 @@ if (!has_role("Admin")) {
 <?php
 $page = 1;
 $countOnPage = 10;
+$total = 0;
 $query = "";
 $dataQuery = "";
 $pageQuery = "";
