@@ -75,7 +75,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
 
     $total_pages = ceil($total / $countOnPage);
-    $offset = ($page-1) * $per_page;
+    $offset = ($page-1) * $countOnPage;
     
     //$db = getDB();
     $stmt = $db->prepare($dataQuery);
