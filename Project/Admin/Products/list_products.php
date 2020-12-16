@@ -81,7 +81,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     //$db = getDB();
     $stmt = $db->prepare($dataQuery);
     $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
-    $stmt->bindValue(":count",$count,PDO::PARAM_INT);
+    $stmt->bindValue(":count",$countOnPage,PDO::PARAM_INT);
    // $stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT);
     $r = $stmt->execute();
     //$r = $stmt->execute($params);
