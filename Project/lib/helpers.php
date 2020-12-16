@@ -80,7 +80,7 @@ function extractData($key) {
         $_SESSION[$key] = $output;
     }
     else if (isset ($_SESSION[$key])) {
-        $output = $_session[$key];
+        $output = $_SESSION[$key];
     }
     else {
         $output = null;
