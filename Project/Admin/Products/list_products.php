@@ -66,6 +66,8 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
     $dataQuery .= " LIMIT :offset, :count";
     
+    
+
     $db = getDB();
     $stmt = $db->prepare($pageQuery);
     $stmt->execute($params);
@@ -80,9 +82,17 @@ if (isset($_POST["search"]) && !empty($query)) {
     
     //$db = getDB();
     $stmt = $db->prepare($dataQuery);
-    $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
+     foreach($params as $key=>$val) {
+        if ($key == ":offset" || $key == ":count") {
+            $stmt->bindValue($key,$val, PDO::PARAM_INT);
+        }
+        else{
+            $stmt->bindValue($key,$val);
+        }
+    }
+    /* $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
     $stmt->bindValue(":count",$countOnPage,PDO::PARAM_INT);
-   // $stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT);
+    $stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT); */
     $r = $stmt->execute();
     //$r = $stmt->execute($params);
     if ($r) {
