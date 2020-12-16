@@ -51,7 +51,7 @@ if (isset($_POST["search"]) && !empty($query)) {
         $pageQuery .= " AND name lke :q";
         $params[":query"] = "%$query%";
     }
-    if (!empty ($_POST["quantityFilter"]))
+    if (isset ($_POST["quantityFilter"]))
     {
     $dataQuery .= " AND quantity <= :quantity ";
     $pageQuery .= " AND quantity <= :quantity ";
