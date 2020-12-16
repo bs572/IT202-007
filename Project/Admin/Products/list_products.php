@@ -7,30 +7,90 @@ if (!has_role("Admin")) {
 }
 ?>
 <?php
+$page = 1;
+$countOnPage = 10;
 $query = "";
-$dbQuery = "";
+$dataQuery = "";
+$pageQuery = "";
+$category = "";
+$search = "";
+$sort = "";
+$order = "";
 $results = [];
+
+
+$category = extractData("category");
+$search = extractData("search");
+$sort = extractData("sort");
+$order = extractData("order");
+if(isset($_GET["page"])){
+    try {
+        $page = (int)$_GET["page"];
+    }
+    catch(Exception $e){
+
+    }
+
+
 if (isset($_POST["query"])) {
     $query = $_POST["query"];
 }
 if (isset($_POST["search"]) && !empty($query)) {
-    $dbQuery = "SELECT name, id, price, quantity, description, user_id from Products WHERE name like :q";
+    $dataQuery = "SELECT name, id, price, quantity, description, user_id from Products WHERE 1=1";
+    $pageQuery = "SELECT COUNT (*) as total from Products WHERE 1=1"; 
+    
+    if (isset ($_POST["category"])) {
+        $dataQuery .= " AND category :=cat";
+        $pageQuery .= " AND category :=cat";
+        $params["cat"] = $category;
+    }
+    if (isset ($_POST["query"])) {
+        $dataQuery .= " AND name like :q";
+        $pageQuery .= " AND name lke :q";
+        $params["query"] = "%$query%";
+    }
     if (!empty ($_POST["quantityFilter"]))
     {
-    $dbQuery .= " AND quantity <= ";
-    $dbQuery .= $_POST["quantityFilter"];
+    $dataQuery .= " AND quantity <= :quantity ";
+    $pageQuery .= " AND quantity <= :quantity ";
+    $params["quantity"] = $_POST["quantityFilter"];
     }
-    $dbQuery .= " LIMIT 10";
+
+    if (isset ($sort) && isset($order)){
+        if(in_array($sort,["price","category","name"])
+        && in_array($order,["asc","desc"])) {
+            $dataQuery .= " ORDER by $sort $order";
+            $pageQuery .= " ORDER by $sort $order";
+        }
+    }
+    $dataQuery .= " LIMIT :offset, :count";
+    
     $db = getDB();
-    $stmt = $db->prepare($dbQuery);
-    $r = $stmt->execute([":q" => "%$query%"]);
+    $stmt = $db->prepare($pageQuery);
+    $stmt->execute($params);
+    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    $total=0;
+    if($results){
+        $total = (int) $result["total"];
+    }
+
+    $total_pages = ceil($total / $countOnPage);
+    $offset = ($page-1) * $per_page;
+    
+    //$db = getDB();
+    $stmt = $db->prepare($dataQuery);
+    $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
+    $stmt->bindValue(":count",$count,PDO::PARAM_INT);
+    $stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT);
+    $r = $stmt->execute();
+    //$r = $stmt->execute($params);
     if ($r) {
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     else {
         flash("There was a problem fetching the results");
     }
-}
+
 ?>
 <h3>List Products</h3>
 <form method="POST">
