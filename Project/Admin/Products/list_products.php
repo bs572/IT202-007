@@ -81,6 +81,9 @@ if (isset($_POST["search"]) && !empty($query)) {
         $total = (int) $result["total"];
     }
 
+    $e = $stmt->errorInfo();
+    flash($e[2]);
+
     $total_pages = ceil($total / $countOnPage);
     $offset = ($page-1) * $countOnPage;
     
@@ -104,6 +107,8 @@ if (isset($_POST["search"]) && !empty($query)) {
     }
     else {
         flash("There was a problem fetching the results");
+        $e = $stmt->errorInfo();
+        flash($e[2]);
     }
 
 ?>
