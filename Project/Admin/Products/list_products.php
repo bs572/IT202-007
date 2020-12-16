@@ -42,8 +42,8 @@ if (isset($_POST["search"]) && !empty($query)) {
     $pageQuery = "SELECT COUNT (*) as total from Products WHERE 1=1";  }
     
     if (isset ($_POST["category"])) {
-        $dataQuery .= " AND category :=cat";
-        $pageQuery .= " AND category :=cat";
+        $dataQuery .= " AND category =:cat";
+        $pageQuery .= " AND category =:cat";
         $params[":cat"] = $category;
     }
     if (isset ($_POST["query"])) {
