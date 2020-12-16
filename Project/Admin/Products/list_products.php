@@ -76,10 +76,10 @@ if (isset($_POST["search"]) && !empty($query)) {
     $stmt->execute($params);
     $params[":offset"] = $offset;
     $params[":count"] = $countOnPage;
-    $results = $stmt->fetch(PDO::FETCH_ASSOC);
+    $pageResults = $stmt->fetch(PDO::FETCH_ASSOC);
     $total=0;
     if($results){
-        $total = (int) $result["total"];
+        $total = (int) $pageResult["total"];
     }
 
     $e = $stmt->errorInfo();
