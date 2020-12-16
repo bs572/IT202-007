@@ -16,6 +16,7 @@ $category = "";
 $search = "";
 $sort = "";
 $order = "";
+$params = [];
 $results = [];
 
 
