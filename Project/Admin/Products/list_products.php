@@ -65,7 +65,8 @@ if (isset($_POST["search"]) && !empty($query)) {
         }
     }
     $dataQuery .= " LIMIT :offset, :count";
-    
+    $params[":offset"] = $offset;
+    $params["count"] = $countOnPage;
     
 
     $db = getDB();
