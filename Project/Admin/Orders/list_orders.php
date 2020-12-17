@@ -86,6 +86,7 @@ if ($r) {
 }
 else {
     flash("There was a problem fetching the results");
+    flash(var_export($e, true));
 }
 
 ?>
