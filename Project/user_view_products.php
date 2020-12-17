@@ -17,16 +17,16 @@ if (isset($productID)) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 
     $db = getDB();
     $stmt = $db->prepare("SELECT user_id, rating, comment, Users.username FROM Ratings JOIN Users on Ratings.user_id = Users.id where Ratings.product_id = :id");
     $r = $stmt->execute([":id" => $productID]);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $rating = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 
 
@@ -48,7 +48,7 @@ if(isset($_POST["quantity"])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 }
 
@@ -66,7 +66,7 @@ if(isset($_POST["comment"]) && isset($_POST["rating"])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 }
 
