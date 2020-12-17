@@ -61,6 +61,8 @@ $dataQuery .= " LIMIT :offset, :count";
 $db = getDB();
 $stmt = $db->prepare($pageQuery);
 $stmt->execute($params);
+$params[":offset"] = $offset;
+$params[":count"] = $countOnPage;
 $pageResults = $stmt->fetch(PDO::FETCH_ASSOC);
 $total=0;
 if($pageResults){
