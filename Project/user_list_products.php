@@ -117,7 +117,7 @@ if (isset($_POST["search"]) && !empty($query)) {
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
         <select name="category" value="<?php echo $result["category"];?>" >
-            <option value="-1">None</option>
+            <option value="-1">All Categories</option>
             <?php foreach ($cats as $cat): ?>
                 <option value="<?php safer_echo($cat["category"]); ?>"
                 ><?php safer_echo($cat["category"]); ?></option>
