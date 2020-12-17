@@ -44,14 +44,16 @@ if(isset($_GET["page"])){
 if (isset ($_POST["category"])) {
     $dataQuery .= " AND category :=cat";
     $pageQuery .= " AND category :=cat";
-    $params["cat"] = $category;
+    $params[":cat"] = $category;
 }
 
 
 if (isset ($_POST["minimumDate"])&& isset ($_POST["maximumDate"])) {
     $dataQuery .= " AND created BETWEEN :minDate AND maxDate ";
     $pageQuery .= " AND created BETWEEN :minDate AND maxDate ";
-    $params["cat"] = $category;
+    $params[":minDate"] = $_POST["minimumDate"];
+    $params[":maxDate"] = $_POST["maximumDate"];
+
 }
 
 $dataQuery .= " LIMIT :offset, :count";
@@ -66,7 +68,7 @@ if($results){
 }
 
 $total_pages = ceil($total / $countOnPage);
-$offset = ($page-1) * $per_page;
+$offset = ($page-1) * $countOnPage;
 
 //$db = getDB();
 $stmt = $db->prepare($dataQuery);
