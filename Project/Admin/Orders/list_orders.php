@@ -62,6 +62,17 @@ $total_pages = ceil($total / $countOnPage);
 $offset = ($page-1) * $countOnPage;
 
 $db = getDB();
+$stmt = $db->prepare("SELECT distinct category from Products;");
+$r = $stmt->execute();
+if ($r) {
+    $cats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+else {
+    flash("There was a problem fetching the results");
+}
+
+
+$db = getDB();
 $stmt = $db->prepare($pageQuery);
 $stmt->execute($params);
 $params[":offset"] = $offset;
