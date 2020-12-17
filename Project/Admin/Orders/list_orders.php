@@ -100,8 +100,10 @@ else {
                 ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
-        <label>Sort by Ascending Price</label>
-        <input type="radio" value ="sort" name = "sort"/>
+        <label for="ASC">Date 1</label>
+        <input name ="minimumDate" label="Date1" type="date" value="desc"/>
+        <label for="DESC">Date 2</label>
+        <input name ="sort"  type="date" value="price"/>
     </div>
 </form>    
     <div class="results">
