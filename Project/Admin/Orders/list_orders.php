@@ -26,6 +26,7 @@ $params = [];
 $quantity = 0;
 $subtotal = 0;
 $cumulativeTotal = 0;
+$total =0;
 $address = "";
 
 $dataQuery = "SELECT * From OrderItems join Products on Products.id WHERE 1=1";
@@ -59,7 +60,7 @@ if (isset ($_POST["minimumDate"])&& isset ($_POST["maximumDate"])) {
 $dataQuery .= " LIMIT :offset, :count";
 $total_pages = ceil($total / $countOnPage);
 $offset = ($page-1) * $countOnPage;
-   
+
 $db = getDB();
 $stmt = $db->prepare($pageQuery);
 $stmt->execute($params);
@@ -67,7 +68,7 @@ $params[":offset"] = $offset;
 $params[":count"] = $countOnPage;
 $pageResults = $stmt->fetch(PDO::FETCH_ASSOC);
 $total=0;
-if($pageResults){
+if($results){
     $total = (int) $pageResult["total"];
 }
 
