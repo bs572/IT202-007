@@ -61,10 +61,10 @@ $dataQuery .= " LIMIT :offset, :count";
 $db = getDB();
 $stmt = $db->prepare($pageQuery);
 $stmt->execute($params);
-$results = $stmt->fetch(PDO::FETCH_ASSOC);
+$pageResults = $stmt->fetch(PDO::FETCH_ASSOC);
 $total=0;
-if($results){
-    $total = (int) $result["total"];
+if($pageResults){
+    $total = (int) $pageResult["total"];
 }
 
 $total_pages = ceil($total / $countOnPage);
@@ -72,10 +72,15 @@ $offset = ($page-1) * $countOnPage;
 
 //$db = getDB();
 $stmt = $db->prepare($dataQuery);
-$stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
-$stmt->bindValue(":count",$countOnPage,PDO::PARAM_INT);
+foreach($params as $key=>$val) {
+   if ($key == ":offset" || $key == ":count") {
+       $stmt->bindValue($key,$val, PDO::PARAM_INT);
+   }
+   else{
+       $stmt->bindValue($key,$val);
+   }
+}
 $r = $stmt->execute();
-//$r = $stmt->execute($params);
 if ($r) {
     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
@@ -112,7 +117,7 @@ else {
                        <?php $cumulativeTotal += $r["total_price"]; ?>
                        <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    
+                    <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
             </div> </div> 
                
                 <?php endforeach; ?>
