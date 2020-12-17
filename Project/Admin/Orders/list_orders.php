@@ -41,9 +41,9 @@ if(isset($_GET["page"])){
 }
 
 
-if (isset ($_POST["category"])) {
-    $dataQuery .= " AND category :=cat";
-    $pageQuery .= " AND category :=cat";
+if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
+    $dataQuery .= " AND category =:cat";
+    $pageQuery .= " AND category =:cat";
     $params[":cat"] = $category;
 }
 
