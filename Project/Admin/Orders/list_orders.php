@@ -103,7 +103,8 @@ else {
         <label for="ASC">Date 1</label>
         <input name ="minimumDate" label="Date1" type="date"/>
         <label for="DESC">Date 2</label>
-        <input name ="sort"  type="date"/>
+        <input name ="sort" type="date"/>
+        <input type="submit" value="Search" name="search"/>
     </div>
 </form>    
     <div class="results">
