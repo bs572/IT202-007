@@ -101,9 +101,9 @@ else {
             <?php endforeach; ?>
         </select>
         <label for="ASC">Date 1</label>
-        <input name ="minimumDate" label="Date1" type="date" value="desc"/>
+        <input name ="minimumDate" label="Date1" type="date"/>
         <label for="DESC">Date 2</label>
-        <input name ="sort"  type="date" value="price"/>
+        <input name ="sort"  type="date"/>
     </div>
 </form>    
     <div class="results">
