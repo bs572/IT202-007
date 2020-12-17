@@ -89,7 +89,7 @@ if(isset($_POST["comment"]) && isset($_POST["rating"]) && !empty ($_POST["commen
                         <input type="hidden" name="price" value="<?php echo $result["price"]; ?>"/>
                 </form>
                     </div>  
-                    
+                    <form>
                     <div class="form-group">
                         <label>Leave a Review</label>
                         <label for="rating">Rating:</label>
