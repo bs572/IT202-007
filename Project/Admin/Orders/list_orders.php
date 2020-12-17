@@ -137,7 +137,7 @@ else {
                     </div>
                     <div>
                         <div>Price:</div>
-                        <div><?php safer_echo($r["price"]); ?></div>
+                        <div><?php safer_echo($r["unit_price"]); ?></div>
                     </div>
                     <div>
                         <div>Quantity:</div>
