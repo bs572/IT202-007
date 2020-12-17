@@ -132,7 +132,7 @@ else {
             </div>
             <?php echo "Total of All Orders: " . $cumulativeTotal ?>
             <div class="form-group">    
-        <input name="category" placeholder="Search" value="<?php safer_echo($query); ?>"/>
+        <input name="category" placeholder="Search"/>
         <input type=date name="minimumDate"/>
         <input type=date name="maximumDate"/>
         <input type="submit" value="Search" name="search"/>
