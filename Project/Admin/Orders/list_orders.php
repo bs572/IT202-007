@@ -130,6 +130,23 @@ else {
                     <div class="card" style="width: 18rem;">
                     <div class="card-body">
                     <h5 class="card-title">Order Number : <?php safer_echo($r["order_id"]); ?></h5>
+                    <div class="list-group-item">
+                    <div>
+                        <div>Name:</div>
+                        <div><?php safer_echo($r["name"]); ?></div>
+                    </div>
+                    <div>
+                        <div>Price:</div>
+                        <div><?php safer_echo($r["price"]); ?></div>
+                    </div>
+                    <div>
+                        <div>Quantity:</div>
+                        <div><?php safer_echo($r["quantity"]); ?></div>
+                    </div>
+                    <div>
+                        <div>Description:</div>
+                        <div><?php safer_echo($r["description"]); ?></div>
+                    </div>
                     </div>
                         <div>
                             <a type="button" href="view_order.php?id=<?php safer_echo($r['order_id']); ?>">View Order</a>
