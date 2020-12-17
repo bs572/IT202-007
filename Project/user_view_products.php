@@ -93,8 +93,8 @@ if(isset($_POST["comment"]) && isset($_POST["rating"]) && !empty ($_POST["commen
                     <div class="form-group">
                         <label>Leave a Review</label>
                         <label for="rating">Rating:</label>
-                        <input type="range" id="rating" name="rating" min="1" max="5" step="1">
-                        <input type="text" name="comment" placeholder="Leave a Review"/>   
+                        <input type="text" name="comment" placeholder="Leave a Review"/>
+                        <input type="range" id="rating" name="rating" min="1" max="5" step="1">   
                         <input type="submit" name="save" value="Submit review"/> 
                     </div></form>
 
