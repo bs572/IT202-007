@@ -74,7 +74,6 @@ $offset = ($page-1) * $countOnPage;
 $stmt = $db->prepare($dataQuery);
 $stmt->bindValue(":offset",$offset,PDO::PARAM_INT);
 $stmt->bindValue(":count",$countOnPage,PDO::PARAM_INT);
-$stmt->bindValue(":quantity",$_POST["quantityFilter"],PDO::PARAM_INT);
 $r = $stmt->execute();
 //$r = $stmt->execute($params);
 if ($r) {
@@ -90,14 +89,12 @@ else {
     <form method="POST">
     <div class="form-group">    
     <select name="category" value="<?php echo $result["category"];?>" >
-            <option value="-1">None</option>
+            <option value="-1">All Categories</option>
             <?php foreach ($cats as $cat): ?>
                 <option value="<?php safer_echo($cat["category"]); ?>"
                 ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
-        <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input type="submit" value="search" name="Search"/>
         <label>Sort by Ascending Price</label>
         <input type="radio" value ="sort" name = "sort"/>
     </div>
