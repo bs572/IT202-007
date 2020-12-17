@@ -57,7 +57,9 @@ if (isset ($_POST["minimumDate"])&& isset ($_POST["maximumDate"])) {
 }
 
 $dataQuery .= " LIMIT :offset, :count";
-    
+$total_pages = ceil($total / $countOnPage);
+$offset = ($page-1) * $countOnPage;
+   
 $db = getDB();
 $stmt = $db->prepare($pageQuery);
 $stmt->execute($params);
@@ -69,8 +71,7 @@ if($pageResults){
     $total = (int) $pageResult["total"];
 }
 
-$total_pages = ceil($total / $countOnPage);
-$offset = ($page-1) * $countOnPage;
+
 
 //$db = getDB();
 $stmt = $db->prepare($dataQuery);
