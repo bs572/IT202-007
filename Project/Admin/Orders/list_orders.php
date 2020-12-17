@@ -127,6 +127,7 @@ else {
     <div class="results">
         <?php if (count($results) > 0): ?>
                 <?php foreach ($results as $r): ?>
+                    <?php  $cumulativeTotal += ($r["unit_price"]*$r["quantity"]); ?>
                     <div class="card" style="width: 18rem;">
                     <div class="card-body">
                     <h5 class="card-title">Order Number : <?php safer_echo($r["order_id"]); ?></h5>
