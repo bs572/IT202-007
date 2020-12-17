@@ -29,7 +29,7 @@ $cumulativeTotal = 0;
 $total =0;
 $address = "";
 
-$dataQuery = "SELECT OrderItems.quantity, OrderItems.unit_price, Products.name From OrderItems join Products on Products.id WHERE 1=1";
+$dataQuery = "SELECT OrderItems.quantity, OrderItems.unit_price, OrderItems.order_id, Products.name From OrderItems join Products on Products.id WHERE 1=1";
 $pageQuery = "SELECT COUNT(1) as total from Orders WHERE 1=1";
 
 if(isset($_GET["page"])){
