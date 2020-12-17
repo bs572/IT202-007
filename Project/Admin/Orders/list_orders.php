@@ -86,7 +86,6 @@ if ($r) {
 }
 else {
     flash("There was a problem fetching the results");
-    flash(var_export($e, true));
 }
 
 ?>
@@ -110,16 +109,13 @@ else {
                 <?php foreach ($results as $r): ?>
                     <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">Order Number : <?php safer_echo($r["id"]); ?></h5>
+                    <h5 class="card-title">Order Number : <?php safer_echo($r["order_id"]); ?></h5>
                     </div>
                         <div>
-                            <a type="button" href="view_order.php?id=<?php safer_echo($r['id']); ?>">View Order</a>
+                            <a type="button" href="view_order.php?id=<?php safer_echo($r['order_id']); ?>">View Order</a>
                         </div>
-                       <?php $cumulativeTotal += $r["total_price"]; ?>
                        <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
-            </div> </div> 
+                    </div> 
                
                 <?php endforeach; ?>
                
