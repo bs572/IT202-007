@@ -112,7 +112,7 @@ else {
                        <?php $cumulativeTotal += $r["total_price"]; ?>
                        <div class="card" style="width: 18rem;">
                     <div class="card-body">
-                    <h5 class="card-title">Total Price:<?php safer_echo($r["total_price"]); ?></h5>
+                    
             </div> </div> 
                
                 <?php endforeach; ?>
