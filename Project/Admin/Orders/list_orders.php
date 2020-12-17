@@ -131,12 +131,7 @@ else {
             </div>
             </div>
             <?php echo "Total of All Orders: " . $cumulativeTotal ?>
-            <div class="form-group">    
-        <input name="category" placeholder="Search"/>
-        <input type=date name="minimumDate"/>
-        <input type=date name="maximumDate"/>
-        <input type="submit" value="Search" name="search"/>
-    </div>
+           
 
                 <?php endif; ?>
                 <?php require(__DIR__ . "/../../partials/flash.php");
