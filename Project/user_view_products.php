@@ -53,7 +53,7 @@ if(isset($_POST["quantity"])) {
 }
 
 
-if(isset($_POST["comment"]) && isset($_POST["rating"])) {
+if(isset($_POST["comment"]) && isset($_POST["rating"]) && !empty ($_POST["comment"])) {
     $db = getDB();
     echo $price;
     $stmt = $db->prepare ("INSERT into Ratings (`product_id`, `user_id`, `rating`, `comment`) VALUES (:productID, :userID, :rating, :comment)");
@@ -85,24 +85,20 @@ if(isset($_POST["comment"]) && isset($_POST["rating"])) {
                     <div class="form-group">
                         <label>Quantity</label>
                             <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Quantity</label>
-                        <input type="text" name="comment" placeholder="Leave a Review"/>    
-                    </div>
+                            <input type="submit" name="save" value="Add to Cart"/>
+                        <input type="hidden" name="price" value="<?php echo $result["price"]; ?>"/>
+                </form>
+                    </div>  
                     
-
                     <div class="form-group">
                         <label>Leave a Review</label>
                         <label for="rating">Rating:</label>
                         <input type="range" id="rating" name="rating" min="1" max="5" step="1">
                         <input type="text" name="comment" placeholder="Leave a Review"/>   
                         <input type="submit" name="save" value="Submit review"/> 
-                    </div>
+                    </div></form>
 
-                        <input type="submit" name="save" value="Add to Cart"/>
-                        <input type="hidden" name="price" value="<?php echo $result["price"]; ?>"/>
-                </form>
+                        
         </div>
     </div>
 <?php endif; ?>
