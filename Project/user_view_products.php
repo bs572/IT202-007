@@ -17,8 +17,19 @@ if (isset($productID)) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
+
+    $db = getDB();
+    $stmt = $db->prepare("SELECT user_id, rating, comment, Users.username FROM Ratings JOIN Users on Ratings.user_id = Users.id where Ratings.product_id = :id");
+    $r = $stmt->execute([":id" => $productID]);
+    $rating = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        $e = $stmt->errorInfo();
+        flash(var_export($e, true));
+    }
+
+
 }
 ?>
 
@@ -37,9 +48,28 @@ if(isset($_POST["quantity"])) {
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if (!$result) {
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 }
+
+
+if(isset($_POST["comment"]) && isset($_POST["rating"]) && !empty ($_POST["comment"])) {
+    $db = getDB();
+    echo $price;
+    $stmt = $db->prepare ("INSERT into Ratings (`product_id`, `user_id`, `rating`, `comment`) VALUES (:productID, :userID, :rating, :comment)");
+    $r = $stmt->execute([
+        ":productID" => $productID,
+        ":userID" => $userID,
+        ":quantity" => $_POST["comment"],
+        ":price" => $price
+        ]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$result) {
+        $e = $stmt->errorInfo();
+        flash(var_export($e, true));
+    }
+}
+
 ?>
 <?php if (isset($result) && !empty($result)): ?>
     <div class="card" style="width: 18rem;">
@@ -55,10 +85,20 @@ if(isset($_POST["quantity"])) {
                     <div class="form-group">
                         <label>Quantity</label>
                             <input type="number" min="0" name="quantity" value="<?php echo $result["quantity"]; ?>"/>
-                    </div>
-                        <input type="submit" name="save" value="Add to Cart"/>
+                            <input type="submit" name="save" value="Add to Cart"/>
                         <input type="hidden" name="price" value="<?php echo $result["price"]; ?>"/>
                 </form>
+                    </div>  
+                    <form>
+                    <div class="form-group">
+                        <label>Leave a Review</label>
+                        <label for="rating">Rating:</label>
+                        <input type="text" name="comment" placeholder="Leave a Review"/>
+                        <input type="range" id="rating" name="rating" min="1" max="5" step="1">   
+                        <input type="submit" name="save" value="Submit review"/> 
+                    </div></form>
+
+                        
         </div>
     </div>
 <?php endif; ?>

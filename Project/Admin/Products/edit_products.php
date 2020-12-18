@@ -15,25 +15,23 @@ if(isset($_GET["id"])){
 <?php
 //saving
 if(isset($_POST["save"])){
-	//TODO add proper validation/checks
 	$name = $_POST["name"];
-	// $state = $_POST["state"];
+	$cat = $_POST["category"];
 	$pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
 	$desc = $_POST["description"];
 	$user = get_user_id();
 	$db = getDB();
 	if(isset($id)){
-		$stmt = $db->prepare("UPDATE Products set name=:name, price=:pr, quantity=:quantity, description=:desc where id=:id");
-		//$stmt = $db->prepare("INSERT INTO F20_Eggs (name, state, base_rate, mod_min, mod_max, next_stage_time, user_id) VALUES(:name, :state, :br, :min,:max,:nst,:user)");
+		$stmt = $db->prepare("UPDATE Products set name=:name, price=:pr, quantity=:quantity, description=:desc, category=:cat where id=:id");
+		
 		$r = $stmt->execute([
             ":name"=>$name,
             ":pr"=>$pr,
             ":quantity"=>$quantity,
             ":desc"=>$desc,
             ":id"=>$id,
-            //":nst"=>$nst,
-            //":user"=>$user
+            ":cat"=>$cat
 		]);
 		if($r){
 			flash("Updated successfully with id: " . $id);
@@ -65,6 +63,10 @@ if(isset($id)){
 	<label>Name</label>
 	<input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
 </div>
+<div class="form-group">
+		<label>Category</label>
+		<input type="text" name="category"/>
+	</div>
 <div class="form-group">	
 	<label>Price</label>
 	<input type="number" min="0" name="price"/>

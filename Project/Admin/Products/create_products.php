@@ -14,6 +14,10 @@ if (!has_role("Admin")) {
 		<input name="name" placeholder="Name"/>
 	</div>
 	<div class="form-group">
+		<label>Category</label>
+		<input type="text" name="category"/>
+	</div>
+	<div class="form-group">
 		<label>Price</label>
 		<input type="number" min="0" name="price"/>
 	</div>
@@ -30,22 +34,21 @@ if (!has_role("Admin")) {
 
 <?php
 if(isset($_POST["save"])){
-	//TODO add proper validation/checks
+
 	$name = $_POST["name"];
-	// $state = $_POST["state"];
+	$cat = $_POST["category"];
 	$pr = $_POST["price"];
 	$quantity = $_POST["quantity"];
 	$desc = $_POST["description"];
-	//$nst = date('Y-m-d H:i:s');//calc
 	$user = get_user_id();
 	$db = getDB();
-	$stmt = $db->prepare("INSERT INTO Products (name, price, quantity, description, user_id) VALUES(:name, :pr, :quantity, :desc, :user)");
+	$stmt = $db->prepare("INSERT INTO Products (name, price, quantity, description, user_id, category) VALUES(:name, :pr, :quantity, :desc, :user, :cat)");
 	$r = $stmt->execute([
 		":name"=>$name,
 		":pr"=>$pr,
 		":quantity"=>$quantity,
 		":desc"=>$desc,
-		//":nst"=>$nst,
+		":cat"=>$cat,
 		":user"=>$user
 	]);
 	if($r){

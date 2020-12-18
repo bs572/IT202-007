@@ -74,5 +74,19 @@ function getMessages() {
     return array();
 }
 
-//end flash
+function extractData($key) {
+    if (isset ($_POST[$key])) {
+        $output = $_POST[$key];
+        $_SESSION[$key] = $output;
+    }
+    else if (isset ($_SESSION[$key])) {
+        $output = $_SESSION[$key];
+    }
+    else {
+        $output = null;
+    }
+    return $output;
+}
+
+
 ?>
