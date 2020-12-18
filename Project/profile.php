@@ -82,8 +82,10 @@ if (isset($_POST["saved"])) {
             echo var_export($stmt->errorInfo(), true);
             flash("Error updating profile");
         }
-        //password is optional, so check if it's even set
-        //if so, then check if it's a valid reset request
+        
+       if (!empty($_POST["newPassword"]) && !empty($_POST["confirm"]) && empty($_POST["password"])) {
+            flash("Please enter your current password"); }
+        
         if (!empty($_POST["newPassword"]) && !empty($_POST["confirm"]) && !empty($_POST["password"])) {
             $currentPass = $_POST["password"];
             $stmt = $db->prepare("SELECT password from Users WHERE id = :id");
