@@ -160,7 +160,7 @@ if (isset($_POST["saved"])) {
     <div class="form-group">
     <label for="visibility">Public Profile</label>
     <input type="hidden" name="visibility" value="0" />
-    <input type="checkbox" name="subcheck" value="1" /> 
+    <input type="checkbox" name="visibility" value="1" /> 
     </div>        
         <input type="submit" name="saved" value="Save Profile"/>
     </form>
