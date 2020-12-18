@@ -142,7 +142,7 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
         <label for="ASC">Ascending</label>
         <input name ="order" label="Descending" type="radio" value="desc"/>
         <label for="DESC">Descending</label>
-        <input name ="sort"  type="r"adio" value="price"/>
+        <input name ="sort"  type="radio" value="price"/>
         <label for="price">Price</label>
         <input type="submit" value="Search" name="search"/>
     </div>
