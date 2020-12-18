@@ -63,6 +63,10 @@ if(isset($id)){
 	<label>Name</label>
 	<input name="name" placeholder="Name" value="<?php echo $result["name"];?>"/>
 </div>
+<div class="form-group">
+		<label>Category</label>
+		<input type="text" name="category"/>
+	</div>
 <div class="form-group">	
 	<label>Price</label>
 	<input type="number" min="0" name="price"/>
