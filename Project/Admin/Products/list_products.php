@@ -54,8 +54,8 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
     }
     if (isset ($_POST["quantityFilter"])&& !empty ($_POST["quantityFilter"]))
     {
-    $dataQuery .= " AND quantity <= :quantity ";
-    $pageQuery .= " AND quantity <= :quantity ";
+    $dataQuery .= " AND quantity <:quantity ";
+    $pageQuery .= " AND quantity <:quantity ";
     $params[":quantity"] = $_POST["quantityFilter"];
     }
 
@@ -95,7 +95,7 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
     }
 
     $e = $stmt->errorInfo();
-    flash($e[2]);
+    flash(var_export($e, true));
 
     $total_pages = ceil($total / $countOnPage);
     $offset = ($page-1) * $countOnPage;
@@ -121,7 +121,7 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
     else {
         flash("There was a problem fetching the results");
         $e = $stmt->errorInfo();
-        flash($e[2]);
+        flash(var_export($e, true));
     }
 
 ?>
@@ -130,7 +130,7 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
 <form method="POST">
     <div class="form-group">    
         <input name="query" placeholder="Search" value="<?php safer_echo($query); ?>"/>
-        <input name="quantityFilter" placeholder="Max Quantity in Stock"/>
+        <input name="quantityFilter" placeholder="Only display quantity lower than"/>
         <select name="category" value="<?php echo $result["category"];?>" >
             <option value="-1">All Categories</option>
             <?php foreach ($cats as $cat): ?>
@@ -138,11 +138,11 @@ if (isset ($_POST["category"]) && $_POST["category"] !=-1) {
                 ><?php safer_echo($cat["category"]); ?></option>
             <?php endforeach; ?>
         </select>
-        <input name ="order" label="Ascending" type=radio value="asc"/>
+        <input name ="order" label="Ascending" type="radio" value="asc"/>
         <label for="ASC">Ascending</label>
-        <input name ="order" label="Descending" type=radio value="desc"/>
+        <input name ="order" label="Descending" type="radio" value="desc"/>
         <label for="DESC">Descending</label>
-        <input name ="sort"  type=radio value="price"/>
+        <input name ="sort"  type="r"adio" value="price"/>
         <label for="price">Price</label>
         <input type="submit" value="Search" name="search"/>
     </div>
