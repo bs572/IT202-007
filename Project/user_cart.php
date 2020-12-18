@@ -89,7 +89,9 @@ if (isset($_POST["query"])) {
                         <a type="button" href="user_view_product_cart.php?id=<?php safer_echo($r['product_id']); ?>">View Product</a>
                     </div>
             <?php endforeach; ?>
-           
+           <div>    
+            <a type="button" href="checkout.php">Checkout</a>
+            </div>
         </div>
         <div class="card" style="width: 18rem;">
                 <div class="card-body">
